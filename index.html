@@ -76,12 +76,68 @@
     .note { border: 1px solid var(--edge); border-left: 3px solid var(--red); background: var(--card); border-radius: 4px; padding: 26px 25px; }
     .note strong { display: block; margin-bottom: 10px; letter-spacing: .03em; font-size: .83rem; }
     .note p { margin: 0; font-size: .85rem; }
-    .network { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .network a { border: 1px solid var(--edge); border-radius: 8px; padding: 20px 22px; display: flex; align-items: center; justify-content: space-between; background: var(--card); gap: 12px; transition: background .2s, border-color .2s; }
-    .network a:hover { background: var(--card-high); border-color: var(--red); }
-    .network strong { display: block; font-size: 1.02rem; margin-bottom: 2px; }
-    .network small { display: block; color: var(--muted); font-size: .78rem; }
-    .network .arrow { color: var(--red); font-size: 1.25rem; flex: none; }
+    /* NOX / Network directory v2 */
+    .network-section { position: relative; overflow: hidden; }
+    .network-section::before {
+      content: ''; position: absolute; width: 460px; height: 460px;
+      top: 8px; right: -235px; pointer-events: none;
+      background: radial-gradient(circle, rgba(243,73,84,.065), transparent 65%);
+    }
+    .network-copy { max-width: 570px; }
+    .network-copy .sectiondesc { max-width: 570px; margin-top: 15px; line-height: 1.7; }
+    .network-count { display: inline-flex; gap: 9px; align-items: center; padding: 8px 11px;
+      border: 1px solid var(--edge); background: #10141c; color: var(--muted);
+      border-radius: 5px; font-size: .68rem; font-weight: 750; letter-spacing: .11em;
+      text-transform: uppercase; white-space: nowrap; }
+    .network-count::before { content: ''; width: 6px; height: 6px; background: var(--red);
+      border-radius: 50%; box-shadow: 0 0 10px rgba(243,73,84,.35); }
+    .network-rule { display: flex; align-items: center; justify-content: space-between; gap: 15px;
+      margin: 38px 0 15px; font-size: .67rem; text-transform: uppercase; font-weight: 800;
+      letter-spacing: .16em; }
+    .network-rule .muted { color: #7d8797; font-size: .66rem; font-weight: 600; letter-spacing: .06em; text-transform: none; }
+    .network-rule > span:first-child { color: #d9dce2; }
+    .network-rule > span:first-child b { color: var(--red); font-weight: 900; padding-right: 9px; }
+    .network-primary { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 13px; }
+    .network-primary a { min-width: 0; min-height: 210px; display: flex; flex-direction: column; justify-content: space-between;
+      padding: 24px; background: linear-gradient(145deg, #151a25 0%, #10141d 75%);
+      border: 1px solid #303647; border-radius: 10px; position: relative; overflow: hidden;
+      transition: border-color .2s, background .2s, transform .2s; }
+    .network-primary a:hover { border-color: var(--red); transform: translateY(-2px); }
+    .network-primary a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px;
+      background: linear-gradient(90deg, var(--red), transparent 70%); opacity: .6; }
+    .np-top, .np-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .np-mark { display: inline-grid; place-items: center; width: 43px; height: 43px;
+      border: 1px solid #424a60; border-radius: 9px; background: #1c2230;
+      font-size: .84rem; letter-spacing: -.05em; font-weight: 900; color: #f5f6fa; }
+    .np-live { color: #bcc6d5; letter-spacing: .13em; font-size: .6rem; font-weight: 800; }
+    .np-live::before { content: ''; display: inline-block; background: #82ab91; width: 5px; height: 5px; border-radius: 50%;
+      vertical-align: 2px; margin-right: 7px; }
+    .np-name { font-size: 1.25rem; font-weight: 760; letter-spacing: -.03em; margin: 22px 0 3px; }
+    .np-description { font-size: .78rem; color: var(--muted); line-height: 1.5; }
+    .np-bottom { margin-top: 19px; padding-top: 13px; border-top: 1px solid #2b3140;
+      color: #bec4d0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .71rem; }
+    .np-bottom span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .network-arrow { flex: none; font-family: sans-serif; font-size: 1rem; color: var(--red); }
+    .network-community { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 11px; }
+    .nc-card { display: flex; align-items: center; gap: 13px; min-width: 0;
+      padding: 16px; border: 1px solid var(--edge-soft); border-radius: 9px;
+      background: #10141d; transition: border-color .2s, background .2s; }
+    a.nc-card:hover { background: #171d28; border-color: var(--red); }
+    .nc-card.pending { opacity: .74; }
+    .nc-icon { flex: none; display: grid; place-items: center; height: 42px; width: 42px;
+      background: #1b202c; color: #e8eaf0; border: 1px solid #32394a; border-radius: 8px;
+      font-weight: 800; font-size: .97rem; letter-spacing: -.05em; }
+    .nc-icon.youtube { font-size: 1.1rem; }
+    .nc-icon.reddit { font-size: .9rem; }
+    .nc-info { min-width: 0; flex: 1; }
+    .nc-title { display: block; font-size: .92rem; font-weight: 800; letter-spacing: -.02em; }
+    .nc-desc { display: block; color: var(--muted); font-size: .72rem; margin-top: 2px; line-height: 1.35; }
+    .nc-status { font-size: .58rem; letter-spacing: .09em; font-weight: 750; text-transform: uppercase;
+      color: #7d8795; white-space: nowrap; }
+    a.nc-card .nc-status { font-size: 1.08rem; letter-spacing: 0; color: var(--red); }
+    .network-foot { margin-top: 20px; padding: 14px 0 0; border-top: 1px solid var(--edge-soft);
+      display: flex; align-items: start; gap: 10px; color: #8893a2; font-size: .73rem; line-height: 1.6; }
+    .network-foot::before { content: '+'; font-family: ui-monospace, monospace; color: var(--red); font-weight: 900; }
     footer { padding-block: 30px 55px; display: flex; align-items: center; justify-content: space-between; gap: 10px; color: var(--muted); font-size: .76rem; }
     footer strong { color: var(--text); letter-spacing: .12em; }
     @media (max-width: 820px) {
@@ -104,15 +160,23 @@
       main section { padding-block: 62px; }
       .sectionhead { display: block; }
       .sectiondesc { margin-top: 12px; }
-      .focus, .network { grid-template-columns: 1fr; }
+      .focus, .network-primary { grid-template-columns: 1fr; }
+      .network-community { grid-template-columns: 1fr 1fr; gap: 9px; }
+      .network-count { margin-top: 12px; }
+      .network-primary a { min-height: 190px; }
+      .nc-card { padding: 12px 10px; gap: 9px; }
+      .nc-icon { width: 32px; height: 32px; font-size: .79rem; }
+      .nc-title { font-size: .8rem; }
+      .nc-desc { font-size: .63rem; }
+      .nc-status { display: none; }
       .tile { min-height: 135px; padding: 20px; }
       .tile h3 { margin-top: 16px; }
       footer { align-items: start; flex-direction: column; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .button, .network a { transition: none; }
-      .button:hover { transform: none; }
+      .button, .network-primary a, .nc-card { transition: none; }
+      .button:hover, .network-primary a:hover { transform: none; }
     }
   </style>
 </head>
@@ -164,21 +228,53 @@
       </div>
       <aside class="note"><strong>NOX / FIELD NOTES</strong><p>Read it. Reproduce it. Question it. Build something with it. Share what the experiment actually showed.</p></aside>
     </section>
-    <section id="network" aria-labelledby="network-title">
+    <section id="network" class="network-section" aria-labelledby="network-title">
       <div class="sectionhead">
-        <div><span class="section-kicker">03 / Network</span><h2 id="network-title">Connect with NOX</h2></div>
-        <p class="sectiondesc">One identity across code, AI experiments, research and technical conversations.</p>
+        <div class="network-copy">
+          <span class="section-kicker">03 / The network</span>
+          <h2 id="network-title">One identity.<br />Multiple channels.</h2>
+          <p class="sectiondesc">A connected space for experiments, open-source work and conversations about how technology really works.</p>
+        </div>
+        <span class="network-count">NOX / CONNECTED ECOSYSTEM</span>
       </div>
-      <div class="network" id="social-grid">
-        <a href="https://github.com/nox-kernel" target="_blank" rel="noopener noreferrer"><span><strong>GitHub</strong><small>Code, experiments &amp; projects</small></span><span class="arrow" aria-hidden="true">↗</span></a>
-        <a href="https://huggingface.co/nox-kernel" target="_blank" rel="noopener noreferrer"><span><strong>Hugging Face</strong><small>AI models, datasets &amp; demos</small></span><span class="arrow" aria-hidden="true">↗</span></a>
+
+      <div class="network-rule"><span><b>01</b> Build &amp; publish</span><span class="muted">Verified destinations</span></div>
+      <div class="network-primary">
+        <a href="https://github.com/nox-kernel" target="_blank" rel="noopener noreferrer" aria-label="Visit NOX on GitHub">
+          <span class="np-top"><span class="np-mark" aria-hidden="true">GH</span><span class="np-live">LINKED</span></span>
+          <span><span class="np-name">GitHub</span><span class="np-description">Source code, engineering notes and reproducible experiments.</span></span>
+          <span class="np-bottom"><span>github.com/nox-kernel</span><span class="network-arrow" aria-hidden="true">↗</span></span>
+        </a>
+        <a href="https://huggingface.co/nox-kernel" target="_blank" rel="noopener noreferrer" aria-label="Visit NOX on Hugging Face">
+          <span class="np-top"><span class="np-mark" aria-hidden="true">HF</span><span class="np-live">LINKED</span></span>
+          <span><span class="np-name">Hugging Face</span><span class="np-description">AI models, datasets and experiments in public.</span></span>
+          <span class="np-bottom"><span>huggingface.co/nox-kernel</span><span class="network-arrow" aria-hidden="true">↗</span></span>
+        </a>
       </div>
+
+      <div class="network-rule"><span><b>02</b> Community &amp; discovery</span><span class="muted">Profiles established · links being added</span></div>
+      <div class="network-community" id="social-grid" aria-label="NOX social platforms">
+        <div class="nc-card pending" data-social="x">
+          <span class="nc-icon" aria-hidden="true">X</span><span class="nc-info"><span class="nc-title">X</span><span class="nc-desc">Technical updates</span></span><span class="nc-status">LINK PENDING</span>
+        </div>
+        <div class="nc-card pending" data-social="youtube">
+          <span class="nc-icon youtube" aria-hidden="true">▶</span><span class="nc-info"><span class="nc-title">YouTube</span><span class="nc-desc">Learning &amp; videos</span></span><span class="nc-status">LINK PENDING</span>
+        </div>
+        <div class="nc-card pending" data-social="reddit">
+          <span class="nc-icon reddit" aria-hidden="true">r/</span><span class="nc-info"><span class="nc-title">Reddit</span><span class="nc-desc">Technical discussions</span></span><span class="nc-status">LINK PENDING</span>
+        </div>
+        <div class="nc-card pending" data-social="discord">
+          <span class="nc-icon" aria-hidden="true">#</span><span class="nc-info"><span class="nc-title">Discord</span><span class="nc-desc">Community presence</span></span><span class="nc-status">LINK PENDING</span>
+        </div>
+      </div>
+      <p class="network-foot">Only confirmed public links are clickable. The remaining profiles will be connected as their exact public addresses are supplied.</p>
     </section>
   </main>
   <footer class="wrap"><strong>NOX KERNEL</strong><span>Independent developer · Building to understand</span><span>© <span id="year">2026</span> NOX</span></footer>
   <script>
-    // ADD THE CONFIRMED FULL URLs FOR NOX ACCOUNTS BELOW.
-    // Keep an empty string until the account URL is confirmed.
+    // NOX SOCIAL LINKS. Only paste public NOX URLs that you have verified.
+    // Empty values remain informational cards and are not clickable.
+    // Discord: use an intentional public server invite or profile link, never a private invite.
     const SOCIAL_LINKS = {
       x: "",
       youtube: "",
@@ -187,34 +283,48 @@
       facebook: ""
     };
 
-    const SOCIAL_LABELS = {
-      x: ["X", "Research & development updates"],
-      youtube: ["YouTube", "Learning & technical videos"],
-      reddit: ["Reddit", "Technical discussions"],
-      discord: ["Discord", "Developer community"],
-      facebook: ["Facebook", "Posts & community"]
+    const grid = document.getElementById('social-grid');
+    const socialTitles = {
+      x: ['X', 'Technical updates', 'X'],
+      youtube: ['YouTube', 'Learning & videos', '▶'],
+      reddit: ['Reddit', 'Technical discussions', 'r/'],
+      discord: ['Discord', 'Community presence', '#'],
+      facebook: ['Facebook', 'Community updates', 'f']
     };
-    const grid = document.getElementById("social-grid");
-    for (const [key, url] of Object.entries(SOCIAL_LINKS)) {
-      if (!url || !/^https:\/\//i.test(url) || !SOCIAL_LABELS[key]) continue;
-      const a = document.createElement("a");
-      a.href = url;
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
-      const container = document.createElement("span");
-      const title = document.createElement("strong");
-      const description = document.createElement("small");
-      title.textContent = SOCIAL_LABELS[key][0];
-      description.textContent = SOCIAL_LABELS[key][1];
-      container.append(title, description);
-      const arrow = document.createElement("span");
-      arrow.className = "arrow";
-      arrow.textContent = "↗";
-      arrow.setAttribute("aria-hidden", "true");
-      a.append(container, arrow);
-      grid.appendChild(a);
+    for (const [key, value] of Object.entries(SOCIAL_LINKS)) {
+      if (!value) continue;
+      let url;
+      try { url = new URL(value); } catch { continue; }
+      if (url.protocol !== 'https:') continue;
+      const card = grid.querySelector('[data-social="' + key + '"]');
+      if (card) {
+        const link = document.createElement('a');
+        link.className = 'nc-card';
+        link.href = url.href;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.setAttribute('aria-label', 'Visit NOX on ' + socialTitles[key][0]);
+        while (card.firstChild) link.appendChild(card.firstChild);
+        const status = link.querySelector('.nc-status');
+        if (status) status.textContent = '↗';
+        card.replaceWith(link);
+      } else if (key === 'facebook') {
+        const link = document.createElement('a');
+        link.className = 'nc-card';
+        link.href = url.href;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.setAttribute('aria-label', 'Visit NOX on Facebook');
+        const mark = document.createElement('span');
+        mark.className = 'nc-icon'; mark.textContent = 'f'; mark.setAttribute('aria-hidden','true');
+        const info = document.createElement('span'); info.className = 'nc-info';
+        const title = document.createElement('span'); title.className = 'nc-title'; title.textContent = 'Facebook';
+        const desc = document.createElement('span'); desc.className = 'nc-desc'; desc.textContent = 'Community updates';
+        const arrow = document.createElement('span'); arrow.className = 'nc-status'; arrow.textContent = '↗'; arrow.setAttribute('aria-hidden','true');
+        info.append(title, desc); link.append(mark, info, arrow); grid.append(link);
+      }
     }
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
