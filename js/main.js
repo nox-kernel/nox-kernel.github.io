@@ -2,11 +2,11 @@
     // Empty values remain informational cards and are not clickable.
     // Discord: use an intentional public server invite or profile link, never a private invite.
     const SOCIAL_LINKS = {
-      x: "",
-      youtube: "",
-      reddit: "",
+      x: "https://x.com/NoxKernel",
+      youtube: "https://www.youtube.com/@NoxKernelDev",
+      reddit: "https://www.reddit.com/user/noxkernal/",
       discord: "",
-      facebook: ""
+      facebook: "https://www.facebook.com/profile.php?id=61595988410074"
     };
 
     const grid = document.getElementById('social-grid');
@@ -42,7 +42,14 @@
         link.rel = 'noopener noreferrer';
         link.setAttribute('aria-label', 'Visit NOX on Facebook');
         const mark = document.createElement('span');
-        mark.className = 'nc-icon'; mark.textContent = 'f'; mark.setAttribute('aria-hidden','true');
+mark.className = 'nc-icon';
+mark.setAttribute('aria-hidden', 'true');
+
+const facebookLogo = document.createElement('img');
+facebookLogo.src = './images/icons/facebook.png';
+facebookLogo.alt = '';
+
+mark.appendChild(facebookLogo);
         const info = document.createElement('span'); info.className = 'nc-info';
         const title = document.createElement('span'); title.className = 'nc-title'; title.textContent = 'Facebook';
         const desc = document.createElement('span'); desc.className = 'nc-desc'; desc.textContent = 'Community updates';
@@ -50,4 +57,12 @@
         info.append(title, desc); link.append(mark, info, arrow); grid.append(link);
       }
     }
+    // Hide Discord until it has a valid public link.
+const pendingDiscord = grid.querySelector(
+  '.nc-card.pending[data-social="discord"]'
+);
+
+if (pendingDiscord) {
+  pendingDiscord.remove();
+}
     document.getElementById('year').textContent = new Date().getFullYear();
