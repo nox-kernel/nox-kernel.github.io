@@ -1,0 +1,169 @@
+/* NOX opening and transition into Focus */
+
+/* Give the page, header and footer more room */
+:root {
+  --max: 1320px;
+}
+
+.intro-story {
+  --intro-progress: 0;
+  --nox-height: min(720px, calc(100svh - 48px));
+
+  grid-template-columns: minmax(0, 1fr) clamp(300px, 36vw, 480px);
+  gap: 24px;
+}
+
+/* Give the opening roughly one screen of space */
+.intro-story .hero {
+  display: flex;
+  align-items: center;
+  min-height: calc(100svh - 85px);
+  padding-block: 64px;
+}
+
+.intro-story .hero h1 {
+  font-size: clamp(3rem, 6.5vw, 6rem);
+  line-height: 1.02;
+}
+
+.intro-story .hero p {
+  max-width: 36rem;
+}
+
+
+
+/* Larger character, centred within the screen */
+.intro-story > .mascot-emblem {
+  top: max(24px, calc((100svh - var(--nox-height)) / 2));
+  isolation: isolate;
+}
+
+.intro-story .mascot-emblem nox-mascot {
+  height: var(--nox-height);
+}
+
+/* A restrained red glow behind the character */
+.intro-story > .mascot-emblem::before {
+  content: "";
+  position: absolute;
+  inset: 8% 0;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse,
+    rgba(243, 73, 84, 0.16),
+    transparent 68%
+  );
+  filter: blur(28px);
+  opacity: calc(0.75 - var(--intro-progress) * 0.25);
+  pointer-events: none;
+}
+
+/* Give the next chapter a stronger introduction */
+.intro-story #focus .sectionhead {
+  max-width: 36rem;
+}
+
+.intro-story #focus h2 {
+  font-size: clamp(2rem, 3.2vw, 3rem);
+}
+
+/* Keep reading space on smaller screens */
+@media (max-width: 820px) {
+  .intro-story {
+    --nox-height: clamp(110px, 16svh, 130px);
+    gap: 0;
+  }
+
+  .intro-story > .mascot-emblem {
+    top: 0;
+  }
+
+  .intro-story .hero {
+    min-height: 0;
+    padding-block: 42px 64px;
+  }
+
+  .intro-story .hero h1 {
+    font-size: clamp(2.8rem, 10.5vw, 4.3rem);
+  }
+
+  .intro-story .page-content section {
+    scroll-margin-top: calc(var(--nox-height) + 24px);
+  }
+}
+/* Bring the desktop mascot stage against the content edge */
+@media (min-width: 821px) {
+  .intro-story > .mascot-emblem {
+    transform: translateX(-24px);
+  }
+}
+/* Sticky navigation and space beneath it */
+:root {
+  --header-height: 85px;
+}
+
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  background: rgba(11, 14, 21, 0.94);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+/* Keep the opening clear when the logo is clicked */
+#top {
+  scroll-margin-top: var(--header-height);
+}
+
+/* Fit NOX into the space below the banner */
+.intro-story {
+  --nox-height: min(
+    720px,
+    calc(100svh - var(--header-height) - 48px)
+  );
+}
+
+.intro-story .hero {
+  min-height: calc(100svh - var(--header-height));
+}
+
+.intro-story > .mascot-emblem {
+  top: max(
+    calc(var(--header-height) + 24px),
+    calc((100svh + var(--header-height) - var(--nox-height)) / 2)
+  );
+}
+
+/* Leave room above sections reached through navigation */
+.intro-story .page-content section {
+  scroll-margin-top: calc(var(--header-height) + 24px);
+}
+
+/* On smaller screens, the compact portrait sits below the banner */
+@media (max-width: 820px) {
+  .intro-story {
+    --nox-height: clamp(110px, 16svh, 130px);
+  }
+
+  .intro-story > .mascot-emblem {
+    top: var(--header-height);
+  }
+
+  .intro-story .hero {
+    min-height: 0;
+  }
+
+  .intro-story .page-content section {
+    scroll-margin-top:
+      calc(var(--header-height) + var(--nox-height) + 24px);
+  }
+}
+
+/* Starting height for the existing two-row mobile banner */
+@media (max-width: 560px) {
+  :root {
+    --header-height: 120px;
+  }
+}

@@ -19,6 +19,7 @@
       margin: 0; color: var(--text); background: var(--bg);
       background-image: linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);
       background-size: 60px 60px;
+      background-attachment: fixed;
       line-height: 1.55;
     }
     a { color: inherit; text-decoration: none; }
@@ -222,4 +223,137 @@
 /* Enlarge the YouTube logo inside its wrapper. */
 .nc-icon.youtube img {
   transform: scale(1.4);
+}
+/* Animated homepage mascot */
+.mascot-emblem nox-mascot {
+  display: block;
+  width: 100%;
+  height: 470px;
+}
+
+/* Still image shown while loading or if 3D is unavailable */
+.mascot-emblem nox-mascot > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: normal;
+}
+/* Tablet */
+@media (max-width: 820px) {
+  .hero .mascot-emblem {
+    max-width: 310px;
+  }
+
+  .mascot-emblem nox-mascot {
+    height: 380px;
+  }
+}
+
+/* Phone */
+@media (max-width: 560px) {
+  .hero .mascot-emblem {
+    max-width: 280px;
+  }
+
+  .mascot-emblem nox-mascot {
+    height: 340px;
+  }
+}
+/* Content on the left, NOX on the right */
+.scroll-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(260px, 30vw, 340px);
+  gap: 36px;
+  align-items: start;
+}
+
+.scroll-layout .page-content {
+  min-width: 0;
+}
+
+/* The hero now contains only the introduction */
+.scroll-layout .hero {
+  display: block;
+  min-height: 0;
+  padding-block: 80px 72px;
+}
+
+/* Fit the existing sections into the content column */
+.scroll-layout .sectionhead {
+  display: block;
+}
+
+.scroll-layout .sectiondesc,
+.scroll-layout .network-count {
+  margin-top: 14px;
+}
+
+.scroll-layout .focus {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.scroll-layout .work {
+  display: block;
+}
+
+.scroll-layout .note {
+  margin-top: 24px;
+}
+
+/* Keep NOX visible while the content scrolls */
+.scroll-layout > .mascot-emblem {
+  position: sticky;
+  top: max(20px, calc(50svh - 235px));
+  align-self: start;
+  width: 100%;
+  max-width: none;
+}
+
+.scroll-layout > .mascot-emblem::after {
+  display: none;
+}
+
+.scroll-layout .mascot-emblem nox-mascot {
+  min-height: 0;
+  height: min(470px, calc(100svh - 40px));
+}
+
+.scroll-layout nox-mascot::part(viewer) {
+  min-height: 0;
+}
+
+/* Smaller screens: a compact pinned area above the text */
+@media (max-width: 820px) {
+  .scroll-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .scroll-layout > .mascot-emblem {
+    order: -1;
+    top: 0;
+    z-index: 2;
+    background: var(--bg);
+    border-bottom: 1px solid var(--edge-soft);
+  }
+
+  .scroll-layout .mascot-emblem nox-mascot {
+    height: clamp(150px, 25svh, 200px);
+  }
+
+  .scroll-layout .page-content section {
+    scroll-margin-top: calc(clamp(150px, 25svh, 200px) + 24px);
+  }
+
+  .scroll-layout .hero {
+    padding-block: 36px 58px;
+  }
+}
+
+@media (max-width: 560px) {
+  .scroll-layout .focus {
+    grid-template-columns: 1fr;
+  }
 }

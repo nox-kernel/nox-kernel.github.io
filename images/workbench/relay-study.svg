@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="660" height="350" viewBox="0 0 660 350" fill="none">
+  <title>A conversation study for Project Relay</title>
+  <desc>A request passes to an assistant, which can return a spoken reply and a visual result. An action needs a separate approval step.</desc>
+  <g stroke="#2b3444" stroke-width="1.5">
+    <path d="M120 110H270M390 110H540M330 160V225H500"/>
+    <rect x="20" y="70" width="150" height="80" rx="8" fill="#121923"/>
+    <rect x="250" y="55" width="160" height="110" rx="12" fill="#141b26" stroke="#f34954"/>
+    <rect x="490" y="70" width="150" height="80" rx="8" fill="#121923"/>
+    <rect x="420" y="200" width="220" height="70" rx="8" fill="#121923"/>
+  </g>
+  <g fill="#f1f2f5" font-family="system-ui, sans-serif" font-size="17" text-anchor="middle">
+    <text x="95" y="106">A request</text>
+    <text x="330" y="103">Assistant</text>
+    <text x="565" y="106">A useful result</text>
+    <text x="530" y="230">Approve an action</text>
+  </g>
+  <g fill="#9da3b0" font-family="system-ui, sans-serif" font-size="12" text-anchor="middle">
+    <text x="95" y="128">voice or text</text>
+    <text x="330" y="127">listen · understand · respond</text>
+    <text x="565" y="128">a reply and a card</text>
+    <text x="530" y="250">a separate decision</text>
+    <text x="330" y="320" letter-spacing="2">PROJECT RELAY / CONVERSATION STUDY</text>
+  </g>
+  <g fill="#f34954"><path d="m224 106 8 4-8 4zM464 106l8 4-8 4z"/><circle cx="330" cy="183" r="3"/></g>
+</svg>

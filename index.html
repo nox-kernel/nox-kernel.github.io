@@ -12,6 +12,9 @@
   <title>NOX Kernel — Building to understand</title>
   <link rel="icon" href="./images/nox-kernel.jpg" type="image/jpeg" />
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/intro.css">
+  <link rel="stylesheet" href="./css/workbench.css">
+  <script type="module" src="./js/nox-mascot.js"></script>
 </head>
 <body>
   <header class="wrap top">
@@ -21,11 +24,12 @@
     </a>
     <nav aria-label="Primary navigation">
       <a href="#focus">Focus</a>
-      <a href="#work">Workbench</a>
+      <a href="./workbench/">Workbench</a>
       <a href="#network">Network</a>
     </nav>
   </header>
-  <main id="top" class="wrap">
+  <main id="top" class="wrap scroll-layout intro-story">
+  <div class="page-content">
     <div class="hero">
       <div>
         <div class="eyebrow">Independent developer / open workbench</div>
@@ -34,10 +38,10 @@
         <div class="actions">
           <a class="button primary" href="https://github.com/nox-kernel" target="_blank" rel="noopener noreferrer">Explore GitHub <span aria-hidden="true">↗</span></a>
           <a class="button secondary" href="#network">Find NOX <span aria-hidden="true">↓</span></a>
+          <a class="button secondary" href="#focus">Scroll to explore <span aria-hidden="true">↓</span></a>
         </div>
       </div>
-      <div class="emblem"><img src="./images/nox-kernel.jpg" alt="The NOX Kernel emblem, a black, white and red futuristic helmet" width="1000" height="1000" /></div>
-    </div>
+    </div> 
     <section id="focus" aria-labelledby="focus-title">
       <div class="sectionhead">
         <div><span class="section-kicker">01 / Focus</span><h2 id="focus-title">Areas of exploration</h2></div>
@@ -56,8 +60,12 @@
       <div>
         <span class="section-kicker">02 / The workbench</span>
         <h2 id="work-title">Build. Test. Learn. Repeat.</h2>
-        <p>This is an evolving record of practical experiments, technical notes and projects. Work will be published when there is something useful to show — not simply to fill a portfolio.</p>
-        <div class="actions"><a class="button secondary" href="https://github.com/nox-kernel" target="_blank" rel="noopener noreferrer">View repositories <span aria-hidden="true">↗</span></a></div>
+        <p>My journal of ongoing projects, things that do not work first time, and the discoveries that help them make sense.</p>
+        <div class="workbench-home-links">
+          <a href="./workbench/website/"><span><strong>Building NOX</strong><small>My first hands-on website, and what I am learning as it grows.</small></span><span aria-hidden="true">↗</span></a>
+          <a href="./workbench/project-relay/"><span><strong>Project Relay</strong><small>A working assistant prototype, under a name that is still evolving.</small></span><span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="actions"><a class="button secondary" href="./workbench/">Open the workbench <span aria-hidden="true">↗</span></a></div>
       </div>
       <aside class="note"><strong>NOX / FIELD NOTES</strong><p>Read it. Reproduce it. Question it. Build something with it. Share what the experiment actually showed.</p></aside>
     </section>
@@ -133,7 +141,25 @@
         </div>
       </div>
     </section>
-  </main>
+    </div> <!-- End of page-content -->
+
+  <aside class="emblem mascot-emblem">
+    <nox-mascot
+      id="homepage-mascot"
+      src="./models/nox-mascot.glb"
+      poster="./images/nox-mascot-poster.png"
+      clip="PowerUp"
+      scroll-driven
+      background="inherit"
+    >
+      <img
+        slot="fallback"
+        src="./images/nox-mascot-poster.png"
+        alt="NOX, an ivory robot mascot with a black visor and red accents."
+      />
+    </nox-mascot>
+  </aside>
+</main>
   <footer class="wrap"><strong>NOX KERNEL</strong><span>Independent developer · Building to understand</span><span>© <span id="year">2026</span> NOX</span></footer>
   <script src="./js/main.js"></script>
 </body>
