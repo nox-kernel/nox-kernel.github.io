@@ -1,0 +1,24 @@
+/* Reusable NOX social icons */
+
+.social-icons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.social-icons a {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.social-icons img {
+  display: block;
+  width: 23px;
+  height: 23px;
+  object-fit: contain;
+}

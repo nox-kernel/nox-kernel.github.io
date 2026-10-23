@@ -1,0 +1,384 @@
+/*NOX Scroll Lab */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f3f4f7;
+    font-family: Arial, sans-serif;
+}
+.world {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 70% 40%,
+      rgba(240, 68, 86, 0.18),
+      transparent 45%
+    ),
+    #0b0e15;
+}
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: 80px;
+  padding: 0 6vw;
+
+  display: flex;
+  align-items: center;
+
+  background: #0b0e15;
+  border-bottom: 1px solid #303440;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+.chapter {
+  min-height: calc(100svh - 80px);
+  padding: 40px 6vw;
+
+  display: grid;
+  place-items: center;
+}
+
+/* CINEMATIC CHAPTERS */
+
+body {
+  color: #f5f6fa;
+}
+
+.topbar {
+  color: #f5f6fa;
+}
+
+.story {
+  position: relative;
+  z-index: 1;
+}
+
+.chapter {
+  display: flex;
+  align-items: center;
+  min-height: 100svh;
+  padding: 120px 8vw 80px;
+}
+
+.scene-copy {
+  max-width: 800px;
+}
+
+.scene-copy h1,
+.scene-copy h2 {
+  color: #ffffff;
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.045em;
+}
+
+.scene-copy p {
+  max-width: 55ch;
+  color: #e0e3e9;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  line-height: 1.65;
+}
+/* NOX cinematic background video */
+
+.world-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.55);
+  z-index: 0;
+}
+
+.world::before,
+.world::after {
+  z-index: 1;
+}
+/* Remove old NOX section dividers */
+.story .chapter {
+  border-bottom: none;
+}
+body {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.scene-copy h1,
+.scene-copy h2 {
+  font-family: "Oxanium", sans-serif;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.topbar {
+  color: #ffffff;
+}
+/* NOX cinematic scroll snapping */
+
+html {
+  scroll-snap-type: none;
+  scroll-padding-top: 80px;
+}
+.story .chapter {
+  min-height: calc(100svh - 80px);
+  padding: 40px 8vw;
+
+  scroll-snap-align: start;
+}
+/* Animated chapter content */
+
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+html.js .chapter.is-active .reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html.js .chapter.is-active .reveal:nth-child(2) {
+  transition-delay: 0.15s;
+}
+
+html.js .chapter.is-active .reveal:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+html.js .chapter.is-active .reveal:nth-child(4) {
+  transition-delay: 0.45s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+/* Full-width NOX navigation */
+
+.top.wrap {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding-inline: clamp(16px, 3vw, 48px);
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.top .identity {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.top .nox-menu {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+/* NOX drawer refinement */
+
+.top .nox-menu nav {
+  width: min(90vw, 360px);
+  height: 100dvh;
+  padding: 108px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* Main navigation links */
+
+.top .nox-menu nav > a {
+  border-left: 2px solid transparent;
+  transition: color .2s, background .2s, border-color .2s;
+}
+
+.top .nox-menu nav > a:hover,
+.top .nox-menu nav > a:focus-visible {
+  color: #ffffff;
+  background: rgba(255,255,255,.05);
+  border-left-color: #f04456;
+}
+
+/* Bottom social bar */
+
+.top .nox-menu nav .drawer-socials {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid #343946;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+
+.top .nox-menu nav .drawer-socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  min-height: 42px;
+  flex: 0 0 42px;
+  padding: 0;
+  border-radius: 9px;
+  background: transparent;
+  transition: background .2s, transform .2s;
+}
+
+.top .nox-menu nav .drawer-socials img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: none;
+  opacity: 1;
+}
+
+.top .nox-menu nav .drawer-socials a:hover {
+  background: rgba(240,68,86,.18);
+  transform: translateY(-2px);
+}
+
+.top .nox-menu nav .drawer-socials a:focus-visible {
+  outline: 2px solid #f04456;
+  outline-offset: 2px;
+}
+.top .nox-menu nav .drawer-socials a:hover {
+  background: rgba(240, 68, 86, 0.12);
+  transform: translateY(-2px);
+}
+/* Shared NOX navigation colour */
+
+:root {
+  --nav-background: #0b0e15;
+}
+
+.top.wrap {
+  background: var(--nav-background);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.top .nox-menu nav {
+  background: var(--nav-background);
+}
+/* Keep the header outside the menu backdrop */
+
+.top .nox-menu[open]::before {
+  top: var(--header-height, 80px);
+}
+/* Seamless NOX navigation */
+
+.top.wrap {
+  border: none;
+  box-shadow: none;
+}
+
+.top .nox-menu nav {
+  border: none;
+  box-shadow: none;
+}
+/* Cinematic text links */
+
+.scene-copy a {
+  color: #ffffff;
+  text-decoration: none;
+  border-bottom: 1px solid #f04456;
+  transition: color .25s ease;
+}
+
+.scene-copy a:hover {
+  color: #f04456;
+}
+
+.story-link {
+  display: inline-block;
+  margin-top: 22px;
+  padding-bottom: 6px;
+}
+
+.social-row a {
+  padding: 10px 0;
+}
+body[data-scene="capabilities"] .world::before {
+  opacity: .2;
+}
+
+body[data-scene="capabilities"] .world::after {
+  opacity: .7;
+}
+
+body[data-scene="collaboration"] .world::before {
+  opacity: .65;
+}
+
+body[data-scene="collaboration"] .world::after {
+  opacity: .25;
+}
+/* Cinematic social icon row */
+
+.social-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.scene-copy .social-row a {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+
+  background: rgba(24, 28, 39, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+
+  text-decoration: none;
+  transition: transform .25s ease, background .25s ease;
+}
+
+.social-row img {
+  width: 25px;
+  height: 25px;
+  display: block;
+  object-fit: contain;
+}
+
+.scene-copy .social-row a:hover {
+  transform: translateY(-4px);
+  background: rgba(240, 68, 86, 0.14);
+}
+
+.scene-copy .social-row a:focus-visible {
+  outline: 2px solid #f04456;
+  outline-offset: 3px;
+}

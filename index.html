@@ -1,166 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0b0e15" />
-  <meta name="description" content="NOX Kernel — an independent developer exploring AI systems, cybersecurity, infrastructure and hardware. Building to understand." />
-  <meta property="og:title" content="NOX Kernel — Building to understand" />
-  <meta property="og:description" content="Independent development, AI systems, cybersecurity, infrastructure and hardware." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://nox-kernel.github.io/images/nox-kernel.jpg" />
-  <title>NOX Kernel — Building to understand</title>
-  <link rel="icon" href="./images/nox-kernel.jpg" type="image/jpeg" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>NOX Kernel — Independent Development</title>
+
+  <!-- Typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Base NOX styling -->
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/intro.css">
-  <link rel="stylesheet" href="./css/workbench.css">
-  <script type="module" src="./js/nox-mascot.js"></script>
+
+  <!-- Shared components -->
+  <link rel="stylesheet" href="./css/social-icons.css">
+
+  <!-- Cinematic homepage -->
+  <link rel="stylesheet" href="./css/home-cinematic.css">
+
+  <!-- Homepage behaviour -->
+  <script src="./js/home-cinematic.js" defer></script>
 </head>
 <body>
-  <header class="wrap top">
-    <a class="identity" href="#top" aria-label="NOX Kernel home">
-      <img src="./images/nox-kernel.jpg" alt="" width="36" height="36" />
-      <div>NOX <span>KERNEL</span></div>
-    </a>
-    <nav aria-label="Primary navigation">
-      <a href="#focus">Focus</a>
-      <a href="./workbench/">Workbench</a>
-      <a href="#network">Network</a>
-    </nav>
+    <div class="world" aria-hidden="true">
+  <video class="world-video" autoplay muted loop playsinline>
+    <source src="./media/background.mp4" type="video/mp4">
+  </video>
+</div>
+
+    <header class="wrap top">
+<a class="identity" href="#top" aria-label="NOX Kernel home">
+  <span class="identity-eyes" aria-hidden="true"></span>
+  <div class="identity-wordmark">NOX <span>KERNEL</span></div>
+</a>
+<details class="nox-menu">
+  <summary aria-label="Navigation menu">☰</summary>
+<nav aria-label="Primary navigation">
+  <a href="#top">Home</a>
+  <a href="./workbench/">Workbench</a>
+  <a href="#network">Network</a>
+
+  <div class="drawer-socials social-icons" aria-label="NOX social profiles">
+
+  <a href="https://github.com/nox-kernel" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+    <img src="./images/icons/GitHub_Invertocat_White.svg" alt="">
+  </a>
+
+  <a href="https://x.com/NoxKernel" aria-label="X" target="_blank" rel="noopener noreferrer">
+    <img src="./images/icons/x-social-media-logo-icon.svg" alt="">
+  </a>
+
+  <a href="https://www.youtube.com/@NoxKernelDev" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+    <img src="./images/icons/yt_icon_red_digital.png" alt="">
+  </a>
+
+  <a href="https://www.reddit.com/user/noxkernal/" aria-label="Reddit" target="_blank" rel="noopener noreferrer">
+    <img src="./images/icons/reddit-4.svg" alt="">
+  </a>
+
+  <a href="https://huggingface.co/nox-kernel" aria-label="Hugging Face" target="_blank" rel="noopener noreferrer">
+    <img src="./images/icons/hf-logo.svg" alt="">
+  </a>
+
+</div>
+</nav></details>
   </header>
-  <main id="top" class="wrap scroll-layout intro-story">
-  <div class="page-content">
-    <div class="hero">
-      <div>
-        <div class="eyebrow">Independent developer / open workbench</div>
-        <h1>Building to<br /><em>understand.</em></h1>
-        <p>Exploring the systems behind modern computing and machine intelligence. AI engineering, cybersecurity, infrastructure and the hardware that makes it all possible.</p>
-        <div class="actions">
-          <a class="button primary" href="https://github.com/nox-kernel" target="_blank" rel="noopener noreferrer">Explore GitHub <span aria-hidden="true">↗</span></a>
-          <a class="button secondary" href="#network">Find NOX <span aria-hidden="true">↓</span></a>
-          <a class="button secondary" href="#focus">Scroll to explore <span aria-hidden="true">↓</span></a>
-        </div>
-      </div>
-    </div> 
-    <section id="focus" aria-labelledby="focus-title">
-      <div class="sectionhead">
-        <div><span class="section-kicker">01 / Focus</span><h2 id="focus-title">Areas of exploration</h2></div>
-        <p class="sectiondesc">Learning by building, testing and understanding the trade-offs behind real systems.</p>
-      </div>
-      <div class="focus">
-        <article class="tile"><span class="index">01</span><h3>AI systems</h3><p>Agents, orchestration, tool use, evaluation and reliability.</p></article>
-        <article class="tile"><span class="index">02</span><h3>Local inference</h3><p>Open models, quantisation, compute constraints and efficiency.</p></article>
-        <article class="tile"><span class="index">03</span><h3>Cybersecurity</h3><p>Defensive research, secure design and threat modelling.</p></article>
-        <article class="tile"><span class="index">04</span><h3>Infrastructure</h3><p>Linux, networking, virtualisation and self-hosted platforms.</p></article>
-        <article class="tile"><span class="index">05</span><h3>Hardware</h3><p>GPUs, compact systems and physical-world interfaces.</p></article>
-        <article class="tile"><span class="index">06</span><h3>Engineering practice</h3><p>Reproducible experiments, documentation and honest iteration.</p></article>
-      </div>
-    </section>
-    <section id="work" class="work" aria-labelledby="work-title">
-      <div>
-        <span class="section-kicker">02 / The workbench</span>
-        <h2 id="work-title">Build. Test. Learn. Repeat.</h2>
-        <p>My journal of ongoing projects, things that do not work first time, and the discoveries that help them make sense.</p>
-        <div class="workbench-home-links">
-          <a href="./workbench/website/"><span><strong>Building NOX</strong><small>My first hands-on website, and what I am learning as it grows.</small></span><span aria-hidden="true">↗</span></a>
-          <a href="./workbench/project-relay/"><span><strong>Project Relay</strong><small>A working assistant prototype, under a name that is still evolving.</small></span><span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="actions"><a class="button secondary" href="./workbench/">Open the workbench <span aria-hidden="true">↗</span></a></div>
-      </div>
-      <aside class="note"><strong>NOX / FIELD NOTES</strong><p>Read it. Reproduce it. Question it. Build something with it. Share what the experiment actually showed.</p></aside>
-    </section>
-    <section id="network" class="network-section" aria-labelledby="network-title">
-      <div class="sectionhead">
-        <div class="network-copy">
-          <span class="section-kicker">03 / The network</span>
-          <h2 id="network-title">One identity.<br />Multiple channels.</h2>
-          <p class="sectiondesc">A connected space for experiments, open-source work and conversations about how technology really works.</p>
-        </div>
-        <span class="network-count">NOX / CONNECTED ECOSYSTEM</span>
-      </div>
 
-      <div class="network-rule"><span><b>01</b> Follow Our Projects</span><span class="muted">Sources</span></div>
-      <div class="network-primary">
-        <a href="https://github.com/nox-kernel" target="_blank" rel="noopener noreferrer" aria-label="Visit NOX on GitHub">
-          <span class="np-top"><span class="np-mark" aria-hidden="true">
-  <img src="./images/icons/GitHub_Invertocat_White.svg" alt="" width="26" height="26" />
-</span><span class="np-live">LINKED</span></span>
-          <span><span class="np-name">GitHub</span><span class="np-description">Source code, engineering notes and reproducible experiments.</span></span>
-          <span class="np-bottom"><span>github.com/nox-kernel</span><span class="network-arrow" aria-hidden="true">↗</span></span>
-        </a>
-        <a href="https://huggingface.co/nox-kernel" target="_blank" rel="noopener noreferrer" aria-label="Visit NOX on Hugging Face">
-          <span class="np-top"><span class="np-mark" aria-hidden="true">
-  <img src="./images/icons/hf-logo.svg" alt="" width="26" height="26" />
-</span><span class="np-live">LINKED</span></span>
-          <span><span class="np-name">Hugging Face</span><span class="np-description">AI models, datasets and experiments in public.</span></span>
-          <span class="np-bottom"><span>huggingface.co/nox-kernel</span><span class="network-arrow" aria-hidden="true">↗</span></span>
-        </a>
-      </div>
+        <main class="story" id="top">
 
-      <div class="network-rule"><span><b>02</b> Community &amp; engagement</span><span class="muted">Socials</span></div>
-      <div class="network-community" id="social-grid" aria-label="NOX social platforms">
-        <div class="nc-card pending" data-social="x">
-          <span class="nc-icon" aria-hidden="true">
-  <img
-    src="./images/icons/x-social-media-logo-icon.svg"
-    alt=""
-    width="26"
-    height="26"
-  />
-</span><span class="nc-info"><span class="nc-title">X</span><span class="nc-desc">Technical updates</span></span><span class="nc-status">LINK PENDING</span>
-        </div>
-        <div class="nc-card pending" data-social="youtube">
-          <span class="nc-icon youtube" aria-hidden="true">
-  <img
-    src="./images/icons/yt_icon_red_digital.png"
-    alt=""
-    width="26"
-    height="26"
-  />
-</span><span class="nc-info"><span class="nc-title">YouTube</span><span class="nc-desc">Learning &amp; videos</span></span><span class="nc-status">LINK PENDING</span>
-        </div>
-        <div class="nc-card pending" data-social="reddit">
-          <span class="nc-icon reddit" aria-hidden="true">
-  <img
-    src="./images/icons/reddit-4.svg"
-    alt=""
-    width="26"
-    height="26"
-  />
-</span><span class="nc-info"><span class="nc-title">Reddit</span><span class="nc-desc">Technical discussions</span></span><span class="nc-status">LINK PENDING</span>
-        </div>
-        <div class="nc-card pending" data-social="discord">
-          <span class="nc-icon" aria-hidden="true">
-  <img
-    src="./images/icons/Discord-Symbol-White.svg"
-    alt=""
-    width="26"
-    height="26"
-  />
-</span><span class="nc-info"><span class="nc-title">Discord</span><span class="nc-desc">Community presence</span></span><span class="nc-status">LINK PENDING</span>
-        </div>
-      </div>
-    </section>
-    </div> <!-- End of page-content -->
+  <!-- 01 / INTRODUCTION -->
+  <section class="chapter" data-scene="intro">
+    <div class="scene-copy">
+      <h1 class="reveal">Ideas into working systems.</h1>
 
-  <aside class="emblem mascot-emblem">
-    <nox-mascot
-      id="homepage-mascot"
-      src="./models/nox-mascot.glb"
-      poster="./images/nox-mascot-poster.png"
-      clip="PowerUp"
-      scroll-driven
-      background="inherit"
-    >
-      <img
-        slot="fallback"
-        src="./images/nox-mascot-poster.png"
-        alt="NOX, an ivory robot mascot with a black visor and red accents."
-      />
-    </nox-mascot>
-  </aside>
+      <p class="reveal">
+        Web development. AI integration. Intelligent automation.
+      </p>
+
+      <p class="reveal">
+        Independent development where design,
+        engineering and innovation meet.
+      </p>
+
+      <a class="reveal story-link" href="#projects">
+        Explore selected work ↗
+      </a>
+    </div>
+  </section>
+
+  <!-- 02 / SELECTED WORK -->
+  <section class="chapter" id="projects" data-scene="projects">
+    <div class="scene-copy">
+      <h2 class="reveal">Built, not just imagined.</h2>
+
+      <p class="reveal">
+        Selected projects, real implementations
+        and ongoing development.
+      </p>
+
+      <p class="reveal">
+        <a href="./workbench/website/">NOX Kernel ↗</a>
+        — Building a digital identity and interactive web experience.
+      </p>
+
+      <p class="reveal">
+        <a href="./workbench/project-relay/">Project Relay ↗</a>
+        — Exploring intelligent assistants and connected tools.
+      </p>
+    </div>
+  </section>
+
+  <!-- 03 / CAPABILITIES -->
+  <section class="chapter" data-scene="capabilities">
+    <div class="scene-copy">
+      <h2 class="reveal">Design. Code. Integrate.</h2>
+
+      <p class="reveal">
+        Modern websites, bespoke interfaces
+        and digital experiences.
+      </p>
+
+      <p class="reveal">
+        AI-powered tools, automation and practical
+        software integrations.
+      </p>
+    </div>
+  </section>
+
+  <!-- 04 / COLLABORATION -->
+  <section class="chapter" data-scene="collaboration">
+    <div class="scene-copy">
+      <h2 class="reveal">Have something worth building?</h2>
+
+      <p class="reveal">
+        From a new website to an intelligent tool,
+        the best projects start with an idea.
+      </p>
+
+      <p class="reveal">
+        Let's explore what we can make happen.
+      </p>
+
+      <a class="reveal story-link"
+         href="https://x.com/NoxKernel"
+         target="_blank"
+         rel="noopener noreferrer">
+        Connect with NOX ↗
+      </a>
+    </div>
+  </section>
+
+  <!-- 05 / NETWORK -->
+  <section class="chapter" id="network" data-scene="socials">
+    <div class="scene-copy">
+      <h2 class="reveal">Follow what's next.</h2>
+
+      <p class="reveal">
+        Projects, experiments, discoveries
+        and everything in between.
+      </p>
+
+      <div class="social-row reveal social-icons" aria-label="NOX social profiles">
+  <a href="https://github.com/nox-kernel" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <img src="./images/icons/GitHub_Invertocat_White.svg" alt="">
+  </a>
+
+  <a href="https://x.com/NoxKernel" target="_blank" rel="noopener noreferrer" aria-label="X">
+    <img src="./images/icons/x-social-media-logo-icon.svg" alt="">
+  </a>
+
+  <a href="https://www.youtube.com/@NoxKernelDev" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+    <img src="./images/icons/yt_icon_red_digital.png" alt="">
+  </a>
+
+  <a href="https://www.reddit.com/user/noxkernal/" target="_blank" rel="noopener noreferrer" aria-label="Reddit">
+    <img src="./images/icons/reddit-4.svg" alt="">
+  </a>
+
+  <a href="https://huggingface.co/nox-kernel" target="_blank" rel="noopener noreferrer" aria-label="Hugging Face">
+    <img src="./images/icons/hf-logo.svg" alt="">
+  </a>
+</div>
+    </div>
+  </section>
+
 </main>
-  <footer class="wrap"><strong>NOX KERNEL</strong><span>Independent developer · Building to understand</span><span>© <span id="year">2026</span> NOX</span></footer>
-  <script src="./js/main.js"></script>
+
 </body>
 </html>
