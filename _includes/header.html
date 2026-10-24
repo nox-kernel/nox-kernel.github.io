@@ -1,0 +1,44 @@
+<header class="wrap top">
+<a class="identity" href="{{ "/" | relative_url }}" aria-label="NOX Kernel home">
+  <span class="identity-eyes" aria-hidden="true"></span>
+  <div class="identity-wordmark">NOX <span>KERNEL</span></div>
+</a>
+<details class="nox-menu">
+  <summary aria-label="Navigation menu">☰</summary>
+<nav aria-label="Primary navigation">
+{% for item in site.data.navigation %}
+
+  {% if item.children %}
+
+    {% assign active_children = item.children | where: "key", page.nav_key %}
+
+    <div class="nav-group{% if page.nav_key == item.key or active_children.size > 0 %} is-current-section{% endif %}">
+      <button class="nav-parent" type="button" aria-expanded="false" aria-controls="nav-{{ item.key | escape }}">
+        {{ item.label | escape }}<span class="nav-chevron" aria-hidden="true"></span>
+      </button>
+
+      <div class="nav-children" id="nav-{{ item.key | escape }}" hidden>
+        {% for child in item.children %}
+          <a href="{{ child.url | relative_url | escape }}"
+             data-nav-key="{{ child.key | escape }}"
+             {% if page.nav_key == child.key %}aria-current="page"{% endif %}>
+            {{ child.label | escape }}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
+  {% else %}
+
+    <a href="{{ item.url | relative_url | escape }}"
+       data-nav-key="{{ item.key | escape }}"
+       {% if page.nav_key == item.key %}aria-current="page"{% endif %}>
+      {{ item.label | escape }}
+    </a>
+
+  {% endif %}
+
+{% endfor %}
+{% include socials.html %}
+</nav></details>
+  </header>

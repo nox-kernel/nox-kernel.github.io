@@ -1,5 +1,8 @@
 import { SANITY } from './sanity-config.js';
 
+const siteBase = document.querySelector('meta[name="nox-baseurl"]')?.content || '';
+const localUrl = value => value?.startsWith('/') && !value.startsWith('//') ? siteBase + value : value;
+
 // Only published, anonymous reads belong in this module. Studio handles all writing.
 const IMAGE_FIELDS = `alt, caption, asset->{url, metadata{dimensions}}`;
 const PROJECT_LIST_FIELDS = `
@@ -49,7 +52,7 @@ export function projectHref(slug) {
   return `/workbench/project/?slug=${encodeURIComponent(slug)}`;
 }
 
-function entryHref(entry, useLegacy = true) {
+export function entryHref(entry, useLegacy = true) {
   if (useLegacy && validSlug(entry.project?.slug) && validSlug(entry.legacyAnchor)) {
     return `${projectHref(entry.project.slug)}#${entry.legacyAnchor}`;
   }
@@ -65,7 +68,7 @@ function element(tag, className, text) {
 
 function link(text, href, className = '', external = false) {
   const node = element('a', className, text);
-  node.href = href;
+  node.href = localUrl(href);
   if (external) {
     node.target = '_blank';
     node.rel = 'noopener noreferrer';
@@ -97,7 +100,7 @@ function imageFigure(image, className = 'wb-cover') {
   if (!url) return null;
   const figure = element('figure', className);
   const img = element('img');
-  img.src = url;
+  img.src = localUrl(url);
   img.alt = typeof image.alt === 'string' ? image.alt : '';
   img.loading = 'lazy';
   img.decoding = 'async';
@@ -437,6 +440,11 @@ async function queryPublished(query, params = {}) {
   } finally {
     clearTimeout(timer);
   }
+}
+export async function getLatestPublishedEntries() {
+  if (!SANITY.projectId) return [];
+  const query = `*[${ENTRY_FILTER}] | order(publishedAt desc, entryNumber desc)[0...3]{${ENTRY_FIELDS}}`;
+  return queryPublished(query, {});
 }
 
 function clearPublishedRoots(page) {

@@ -1,73 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>NOX Kernel — Independent Development</title>
-
-  <!-- Typography -->
-  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Base NOX styling -->
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/navigation.css">
-
-  <!-- Shared components -->
-  <link rel="stylesheet" href="./css/social-icons.css">
-
-  <!-- Cinematic homepage -->
-  <link rel="stylesheet" href="./css/home-cinematic.css">
-
-  <!-- Homepage behaviour -->
-  <script src="./js/home-cinematic.js" defer></script>
-</head>
-<body>
-    <div class="world" aria-hidden="true">
-  <video class="world-video" autoplay muted loop playsinline>
-    <source src="./media/background.mp4" type="video/mp4">
-  </video>
-</div>
-
-    <header class="wrap top">
-<a class="identity" href="#top" aria-label="NOX Kernel home">
-  <span class="identity-eyes" aria-hidden="true"></span>
-  <div class="identity-wordmark">NOX <span>KERNEL</span></div>
-</a>
-<details class="nox-menu">
-  <summary aria-label="Navigation menu">☰</summary>
-<nav aria-label="Primary navigation">
-  <a href="#top">Home</a>
-  <a href="./workbench/">Workbench</a>
-  <a href="#network">Network</a>
-
-  <div class="drawer-socials social-icons" aria-label="NOX social profiles">
-
-  <a href="https://github.com/nox-kernel" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
-    <img src="./images/icons/GitHub_Invertocat_White.svg" alt="">
-  </a>
-
-  <a href="https://x.com/NoxKernel" aria-label="X" target="_blank" rel="noopener noreferrer">
-    <img src="./images/icons/x-social-media-logo-icon.svg" alt="">
-  </a>
-
-  <a href="https://www.youtube.com/@NoxKernelDev" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
-    <img src="./images/icons/yt_icon_red_digital.png" alt="">
-  </a>
-
-  <a href="https://www.reddit.com/user/noxkernal/" aria-label="Reddit" target="_blank" rel="noopener noreferrer">
-    <img src="./images/icons/reddit-4.svg" alt="">
-  </a>
-
-  <a href="https://huggingface.co/nox-kernel" aria-label="Hugging Face" target="_blank" rel="noopener noreferrer">
-    <img src="./images/icons/hf-logo.svg" alt="">
-  </a>
-
-</div>
-</nav></details>
-  </header>
-
-        <main class="story" id="top">
+---
+layout: base
+title: "NOX Kernel \u2014 Independent Development"
+nav_key: home
+styles: [/css/home-cinematic.css]
+scripts: [/js/home-cinematic.js]
+---
+<main class="story" id="top">
 
   <!-- 01 / INTRODUCTION -->
   <section class="chapter" data-scene="intro">
@@ -83,8 +21,8 @@
         engineering and innovation meet.
       </p>
 
-      <a class="reveal story-link" href="#projects">
-        Explore selected work ↗
+      <a class="reveal story-link icon-link" href="#projects">
+  Explore selected work
       </a>
     </div>
   </section>
@@ -100,12 +38,16 @@
       </p>
 
       <p class="reveal">
-        <a href="./workbench/website/">NOX Kernel ↗</a>
+        <a href="{{ "/journal/?project=website" | relative_url }}" class="inline-link icon-link">
+  NOX Kernel
+</a>
         — Building a digital identity and interactive web experience.
       </p>
 
       <p class="reveal">
-        <a href="./workbench/project-relay/">Project Relay ↗</a>
+        <a href="{{ "/journal/?project=project-relay" | relative_url }}" class="inline-link icon-link">
+  Project Relay
+</a>
         — Exploring intelligent assistants and connected tools.
       </p>
     </div>
@@ -142,12 +84,13 @@
         Let's explore what we can make happen.
       </p>
 
-      <a class="reveal story-link"
-         href="https://x.com/NoxKernel"
-         target="_blank"
-         rel="noopener noreferrer">
-        Connect with NOX ↗
-      </a>
+      <a
+  class="reveal story-link icon-link"
+  href="https://x.com/NoxKernel"
+  target="_blank"
+  rel="noopener noreferrer">
+  Connect with NOX
+</a>
     </div>
   </section>
 
@@ -163,29 +106,26 @@
 
       <div class="social-row reveal social-icons" aria-label="NOX social profiles">
   <a href="https://github.com/nox-kernel" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-    <img src="./images/icons/GitHub_Invertocat_White.svg" alt="">
+    <img src="{{ "/images/icons/GitHub_Invertocat_White.svg" | relative_url }}" alt="">
   </a>
 
   <a href="https://x.com/NoxKernel" target="_blank" rel="noopener noreferrer" aria-label="X">
-    <img src="./images/icons/x-social-media-logo-icon.svg" alt="">
+    <img src="{{ "/images/icons/x-social-media-logo-icon.svg" | relative_url }}" alt="">
   </a>
 
   <a href="https://www.youtube.com/@NoxKernelDev" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-    <img src="./images/icons/yt_icon_red_digital.png" alt="">
+    <img src="{{ "/images/icons/yt_icon_red_digital.png" | relative_url }}" alt="">
   </a>
 
   <a href="https://www.reddit.com/user/noxkernal/" target="_blank" rel="noopener noreferrer" aria-label="Reddit">
-    <img src="./images/icons/reddit-4.svg" alt="">
+    <img src="{{ "/images/icons/reddit-4.svg" | relative_url }}" alt="">
   </a>
 
   <a href="https://huggingface.co/nox-kernel" target="_blank" rel="noopener noreferrer" aria-label="Hugging Face">
-    <img src="./images/icons/hf-logo.svg" alt="">
+    <img src="{{ "/images/icons/hf-logo.svg" | relative_url }}" alt="">
   </a>
 </div>
     </div>
   </section>
 
 </main>
-
-</body>
-</html>

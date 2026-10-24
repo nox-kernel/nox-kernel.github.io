@@ -1,28 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0b0e15" />
-  <title>A journal entry — NOX Kernel</title>
-  <meta name="description" content="A note from NOX's workbench: what I tried, what changed, and what I want to understand next." />
-  <link rel="icon" href="../../images/nox-kernel.jpg" type="image/jpeg" />
-  <link rel="stylesheet" href="../../css/style.css" />
-  <link rel="stylesheet" href="../../css/workbench.css" />
-  <script src="../../js/workbench.js" defer></script>
-  <script type="module" src="../../js/journal-content.js"></script>
-</head>
-<body class="journal-site" data-journal-page="entry">
-  <a class="wb-skip" href="#project-main">Skip to the journal entry</a>
-  <header class="wrap top">
-    <a class="identity" href="../../" aria-label="NOX Kernel home"><img src="../../images/nox-kernel.jpg" alt="" width="36" height="36" /><div>NOX <span>KERNEL</span></div></a>
-    <nav aria-label="Primary navigation"><a href="../../">Home</a><a href="../" aria-current="page">Workbench</a><a href="../../#network">Network</a></nav>
-  </header>
-  <main id="project-main" class="wrap" data-journal-page-root>
-    <div class="wb-intro"><div><span class="wb-kicker">NOX / Field notes</span><h1>Opening<br /><em>the journal.</em></h1><p class="wb-deck" role="status">Loading the journal entry…</p></div></div>
-    <noscript><p>This entry needs JavaScript to load its published content.</p></noscript>
-    <a class="wb-link" href="../">Back to the workbench <span aria-hidden="true">↗</span></a>
-  </main>
-  <footer class="wrap"><strong>NOX KERNEL</strong><a href="../">Back to the workbench</a><span>© <span data-current-year>2026</span> NOX</span><a class="wb-editor-link" href="https://nox-kernel-workbench.sanity.studio/" target="_blank" rel="noopener noreferrer">Editor</a></footer>
-</body>
-</html>
+---
+layout: base
+title: Journal — NOX Kernel
+nav_key: workbench-journal
+metadata: |
+  <meta name="robots" content="noindex">
+scripts: [/js/workbench-redirect.js]
+---
+<main class="wrap" style="padding-block:80px">
+  <h1>The notes have a new home.</h1>
+  <p role="status">Opening the Journal…</p>
+  <p><a href="{{ '/journal/' | relative_url }}">Read the Journal</a> · <a href="{{ '/projects/' | relative_url }}">Explore Projects</a></p>
+</main>

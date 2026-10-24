@@ -36,6 +36,8 @@ export class NoxMascot extends HTMLElement {
     const poster = this.getAttribute('poster') || '';
     this.shadowRoot.innerHTML = `
       <style>
+        :host([companion]) { min-height:0; }
+        :host([companion]) model-viewer { min-height:0; --progress-bar-height:0; }
         :host { display:block; position:relative; width:100%; min-height:320px; isolation:isolate; }
         .stage { position:absolute; inset:0; overflow:hidden; background:var(--nox-stage-background,transparent); }
         .fallback { position:absolute; inset:0; z-index:1; display:grid; place-items:center; pointer-events:none; transition:opacity .35s ease; }
@@ -76,7 +78,8 @@ export class NoxMascot extends HTMLElement {
     this.viewer.addEventListener('play', () => this._emitState());
     this.viewer.addEventListener('pause', () => this._emitState());
     this.viewer.addEventListener('finished', () => {
-      if (this._clip === 'PowerUp') this.playAnimation('Idle');
+      this.dispatchEvent(new CustomEvent('nox-clip-finished', { bubbles:true, detail:{ clip:this._clip } }));
+      if (!this.hasAttribute('companion') && this._clip === 'PowerUp') this.playAnimation('Idle');
     });
     this.viewer.addEventListener('camera-change', event => {
       if (event.detail?.source === 'user-interaction') this.hint.textContent = 'Drag to explore · Pinch or scroll to zoom';
@@ -108,6 +111,7 @@ export class NoxMascot extends HTMLElement {
       viewerReady ??= import(viewerModule.href);
       await viewerReady;
       await customElements.whenDefined('model-viewer');
+      if (this.hasAttribute('companion')) customElements.get('model-viewer').minimumRenderScale = .75;
       this.viewer.setAttribute('src', this.getAttribute('src') || '');
     } catch (error) {
       console.warn('NOX 3D preview could not start. The still image remains available.', error);
@@ -119,8 +123,15 @@ export class NoxMascot extends HTMLElement {
     this._loaded = true;
     this._failed = false;
     this._animations = [...this.viewer.availableAnimations];
+    this._signals = (this.viewer.model?.materials || []).filter(material => material.name === 'Light | signal red')
+      .map(material => ({ material, strength:material.emissiveStrength }));
     this._clip = this._animations.includes(this._clip) ? this._clip : this._animations[0] || '';
     this.viewer.animationName = this._clip;
+    if (this.hasAttribute('companion')) {
+      this.viewer.cameraOrbit = this.hasAttribute('journey') ? '12deg 83deg 108%' : '16deg 80deg 100%';
+      this.viewer.setAttribute('shadow-intensity', '0');
+      this.viewer.setAttribute('animation-crossfade-duration', '160');
+    }
     await this.viewer.updateComplete;
     // Frame the actual animated pose, rather than the export's controller rest pose.
     this.viewer.currentTime = 0;
@@ -135,6 +146,7 @@ export class NoxMascot extends HTMLElement {
   }
 
   _onError() {
+    this.viewer?.pause?.();
     this._failed = true;
     this._loaded = false;
     this._switchingAnimation = false;
@@ -147,48 +159,29 @@ export class NoxMascot extends HTMLElement {
 
   _syncPlayback() {
     if (!this._loaded) return this._emitState();
-    if (this.hasAttribute('scroll-driven')) {
-  this.setScrollProgress(this._scrollProgress ?? 0);
-  this._emitState();
-  return;
-}
+    if (this._characterControlled) {
+      if (this._characterActive && !this._reduced && !document.hidden) {
+        // Visibility observers may run before the journey consumes completion.
+        // Replaying a finished one-shot here resets its action clock to zero and
+        // can rewind/strand a flight. The controller selects the next clip.
+        if (this.viewer.paused && !(this._characterOptions?.repetitions === 1 && this.characterProgress >= .999)) {
+          this.viewer.play(this._characterOptions);
+        }
+      } else this.viewer.pause();
+      return this._emitState();
+    }
     if (!this._switchingAnimation && this._wantedPlaying && !this._reduced && this._visible && this.isConnected && !document.hidden) {
-      this.viewer.play(this._clip === 'PowerUp' ? { repetitions:1 } : {});
+      this.viewer.play(['PowerUp', 'Prepare', 'Dock', 'Interact'].includes(this._clip) ? { repetitions:1 } : {});
     }
     else this.viewer.pause();
     this._emitState();
   }
 
-  setScrollProgress(progress) {
-  const value = Number(progress);
-
-  if (!Number.isFinite(value)) return;
-
-  this._scrollProgress = Math.max(0, Math.min(1, value));
-
-  if (!this._loaded || !this.hasAttribute('scroll-driven')) return;
-
-  this.viewer.pause();
-
-  const duration = this.viewer.duration;
-
-  if (!Number.isFinite(duration) || duration <= 0) return;
-
-  const end = Math.max(0, duration - 0.001);
-
-  this.viewer.currentTime = this._reduced
-    ? 0
-    : this._scrollProgress * end;
-}
-setCameraView(angle, distance) {
-  if (!this._loaded) return;
-
-  this.viewer.cameraOrbit = `${angle}deg 80deg ${distance}%`;
-
-  if (this._reduced) {
-    this.viewer.jumpCameraToGoal();
+  setCameraView(angle, distance) {
+    if (!this._loaded) return;
+    this.viewer.cameraOrbit = `${angle}deg 80deg ${distance}%`;
+    if (this._reduced) this.viewer.jumpCameraToGoal();
   }
-}
 
   _emitState() {
     this.dispatchEvent(new CustomEvent('nox-state', { bubbles:true, composed:true, detail:this.state }));
@@ -216,12 +209,60 @@ setCameraView(angle, distance) {
     if (request !== this._animationRequest || !this._loaded) return false;
     this.viewer.currentTime = 0;
     this._switchingAnimation = false;
-    if (play) {
-      this._wantedPlaying = true;
-      this._reduced = false;
-    }
+    if (play) this._wantedPlaying = true;
     this._syncPlayback();
     return true;
+  }
+
+  /** Switch local actions without seeking the global mixer clock. appendAnimation
+   * resets only the incoming action, so the outgoing pose can actually crossfade.
+   * The journey reads this action's clock for both motion and phase boundaries.
+   */
+  async playCharacterAnimation(name, { loop = false, fade = 180, timeScale = 1 } = {}) {
+    if (!this._loaded || !this._animations.includes(name)) return false;
+    const request = ++this._animationRequest;
+    this._characterControlled = true;
+    this._characterOptions = { repetitions: loop ? Infinity : 1 };
+    this._clip = name;
+    this.viewer.animationCrossfadeDuration = fade;
+    this.viewer.timeScale = timeScale;
+    if (this.viewer.animationName !== name) {
+      // A reused one-shot can still be clamped/paused from its previous run.
+      // Reset that incoming action through the public API before starting it;
+      // assigning time:0 alone does not reset its loop/completion bookkeeping.
+      // The outgoing action remains intact for the existing crossfade.
+      this.viewer.detachAnimation(name, { fade: false });
+      this.viewer.appendAnimation(name, { time: 0, weight: 1, repetitions: loop ? Infinity : 1, fade: false });
+      this.viewer.animationName = name;
+      await this.viewer.updateComplete;
+    }
+    if (request !== this._animationRequest) return false;
+    this.viewer.play(this._characterOptions);
+    this._syncPlayback();
+    return true;
+  }
+
+  setCharacterActive(active) {
+    this._characterActive = Boolean(active);
+    this._syncPlayback();
+  }
+
+  advanceCharacterOffscreen(dt) {
+    // model-viewer skips mixer updates outside its own viewport. Advance the
+    // same clip clock there, allowing an unseen approach to enter the lane.
+    if (this._loaded && this._characterActive && !this.viewer.modelIsVisible && !this._reduced && !document.hidden) {
+      // Seeking after a one-shot has finished resets its time to zero while
+      // leaving the Three.js action clamped/paused. Consume completion first.
+      if (this.characterProgress >= .999) return;
+      const scale = this.viewer.timeScale || 1;
+      const next = Math.min(this.viewer.duration, this.viewer.currentTime + dt * scale);
+      this.viewer.currentTime = next / scale;
+    }
+  }
+
+  get characterProgress() {
+    return this._loaded && this.viewer.duration > 0
+      ? Math.min(1, this.viewer.currentTime / this.viewer.duration) : 0;
   }
 
   togglePlayback() {
@@ -235,6 +276,12 @@ setCameraView(angle, distance) {
     this._reduced = Boolean(enabled);
     this._wantedPlaying = !this._reduced;
     this._syncPlayback();
+  }
+
+  setSignalIntensity(intensity = 1) {
+    for (const { material, strength } of this._signals || []) {
+      material.setEmissiveStrength(strength * intensity);
+    }
   }
 
   setBackground(name) {

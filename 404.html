@@ -1,0 +1,69 @@
+---
+layout: base
+permalink: /404.html
+title: Oops — NOX Kernel
+body_class: not-found-page
+styles:
+  - /css/not-found.css
+metadata: |
+  <meta name="description" content="This page is off the map. Find your way back to NOX projects, the journal or home.">
+  <meta name="robots" content="noindex, follow">
+---
+
+<main class="not-found" id="not-found-main">
+  <div class="not-found-topline" aria-hidden="true">
+    <span>NOX / EXPLORER</span>
+    <span><i></i> DESTINATION UNKNOWN</span>
+  </div>
+
+  <div class="not-found-content">
+    <div class="not-found-map" aria-hidden="true">
+      <svg class="not-found-diagram" viewBox="0 0 620 410" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="nf-digit-stroke" x1="310" y1="90" x2="310" y2="330" gradientUnits="userSpaceOnUse"><stop stop-color="#F2F4F8"/><stop offset="1" stop-color="#8F98A8" stop-opacity=".45"/></linearGradient>
+        </defs>
+        <g class="nf-map-grid" stroke="currentColor" stroke-width="1">
+          <path d="M30 105H590M30 205H590M30 305H590M110 40V370M310 40V370M510 40V370"/>
+          <path d="M30 64V40H54M566 40H590V64M30 346V370H54M566 370H590V346"/>
+        </g>
+        <g class="nf-route" stroke="currentColor" stroke-width="1.1">
+          <path d="M0 142H50V68H221V92M399 318V346H570V264H620"/>
+          <path d="M130 318V352H260M360 58H488V86" stroke-dasharray="3 7"/>
+        </g>
+        <g class="nf-digits" stroke="url(#nf-digit-stroke)" stroke-width="1.35" stroke-linejoin="miter">
+          <path d="M134 92H103L40 216V249H119V318H153V249H178V216H153V92H134ZM119 150V216H77L119 150Z"/>
+          <path d="M266 92H348L376 120V290L348 318H266L238 290V120L266 92ZM278 128L272 134V276L278 282H336L342 276V134L336 128H278Z"/>
+          <path d="M514 92H483L420 216V249H499V318H533V249H558V216H533V92H514ZM499 150V216H457L499 150Z"/>
+        </g>
+        <g class="nf-node" stroke="currentColor" stroke-width="1.2">
+          <path d="M217 92H225V100H217ZM395 310H403V318H395Z"/>
+          <path d="M260 349V355M360 55V61M485 86H491"/>
+        </g>
+        <g class="nf-eyes" fill="currentColor">
+          <path d="M281 190L301 196L304 199L296 198L284 193Z"/>
+          <path d="M333 190L313 196L310 199L318 198L330 193Z"/>
+        </g>
+        <path class="nf-signal nf-signal-in" d="M0 142H50V68H221V92" stroke="currentColor" stroke-width="1.8"/>
+        <path class="nf-signal nf-signal-out" d="M399 318V346H570V264H620" stroke="currentColor" stroke-width="1.8"/>
+      </svg>
+      <span class="not-found-coordinate">404 / PAGE NOT FOUND</span>
+    </div>
+
+    <div class="not-found-message">
+      <p class="not-found-kicker"><span aria-hidden="true"></span> A SMALL DETOUR</p>
+      <h1 aria-label="Oops. Page not found.">Oops<span>.</span></h1>
+      <p class="not-found-lead">This page is off the map.</p>
+      <p class="not-found-copy">The address may have changed, or this page hasn’t been built yet. Let’s get you somewhere familiar.</p>
+      <div class="not-found-actions" aria-label="Find your way back">
+        <a class="not-found-home" href="{{ '/' | relative_url }}"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16 10H4m5-5-5 5 5 5"/></svg><span>Back to home</span></a>
+        <a class="not-found-secondary" href="{{ '/projects/' | relative_url }}"><span>Explore projects</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10"/></svg></a>
+        <a class="not-found-secondary" href="{{ '/journal/' | relative_url }}"><span>Open journal</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="not-found-bottomline" aria-hidden="true">
+    <span>CONNECTION INTACT</span>
+    <span>STILL IN THE NOX UNIVERSE <i></i></span>
+  </div>
+</main>

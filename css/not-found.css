@@ -1,0 +1,76 @@
+/* Shared NOX header and environment; only the missing-page content is styled here. */
+body.not-found-page { overflow-x: hidden; }
+.not-found { min-height: calc(100vh - var(--header-height, 80px)); min-height: calc(100dvh - var(--header-height, 80px)); display: flex; flex-direction: column; color: #f2f4f8; padding: 29px clamp(20px, 4vw, 64px) 23px; isolation: isolate; }
+.not-found::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(110deg, #080c1352, #080c13c7); }
+.not-found-topline, .not-found-bottomline { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: #949dad; font: 500 .53rem/1.5 "Oxanium", monospace; letter-spacing: .15em; }
+.not-found-topline > span:last-child, .not-found-bottomline > span:last-child { display: inline-flex; align-items: center; gap: 9px; }
+.not-found-topline i, .not-found-bottomline i { width: 3px; height: 3px; display: inline-block; flex: none; background: #f34b58; box-shadow: 0 0 8px #f34b5880; }
+.not-found-content { flex: 1; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(28px, 5vw, 90px); align-items: center; width: 100%; max-width: 1240px; margin: 0 auto; padding-block: clamp(42px, 9vh, 100px); }
+.not-found-map { position: relative; min-width: 0; }
+.not-found-diagram { width: 100%; height: auto; display: block; overflow: visible; }
+.nf-map-grid { color: #d5deed; opacity: .095; }
+.nf-route { color: #c3ccdc; opacity: .3; }
+.nf-digits { fill: #080c1340; }
+.nf-node { color: #f34b58; }
+.nf-eyes { color: #f34b58; filter: drop-shadow(0 0 4px #f34b5860); }
+.nf-signal { color: #f34b58; stroke-dasharray: 24 500; stroke-dashoffset: 26; animation: nf-signal-pass 6s linear infinite; }
+.nf-signal-out { animation-delay: -3s; }
+.not-found-coordinate { display: block; text-align: center; margin-top: 7px; color: #8e98a8; font: 500 .54rem/1.5 "Oxanium", monospace; letter-spacing: .21em; }
+.not-found-message { max-width: 420px; padding-block: 20px; }
+.not-found-kicker { display: flex; align-items: center; gap: 10px; margin: 0 0 22px; color: #bdc4d0; font: 500 .56rem/1.5 "Oxanium", monospace; letter-spacing: .17em; }
+.not-found-kicker > span { width: 17px; height: 1px; background: #f34b58; }
+.not-found h1 { margin: 0 0 24px; font: 500 clamp(3.7rem, 6.7vw, 6.5rem)/.95 "Space Grotesk", sans-serif; letter-spacing: -.065em; }
+.not-found h1 > span { color: #f34b58; }
+.not-found-lead { margin: 0 0 14px; color: #e2e6ed; font-size: clamp(1.1rem, 1.65vw, 1.35rem); line-height: 1.4; letter-spacing: -.025em; }
+.not-found-copy { max-width: 340px; margin: 0; color: #a1aaba; font-size: .87rem; line-height: 1.9; }
+.not-found-actions { margin-top: 32px; display: grid; grid-template-columns: max-content max-content; align-items: center; justify-content: start; gap: 12px 24px; }
+.not-found-actions a { display: inline-flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 44px; font-size: .76rem; font-weight: 500; transition: border-color .18s, background .18s, color .18s; }
+.not-found-actions svg { width: 17px; height: 17px; flex: none; stroke: currentColor; stroke-width: 1.3; }
+.not-found-actions .not-found-home { grid-column: 1 / -1; justify-self: start; width: max-content; border: 1px solid #dce2ec99; background: #080c1366; color: #f0f3f8; padding: 0 19px; gap: 28px; margin-bottom: 2px; }
+.not-found-home svg { color: #f34b58; }
+.not-found-actions .not-found-home:hover { border-color: #f2f4f8; background: #ffffff0d; }
+.not-found-secondary { color: #adb7c7; }
+.not-found-secondary svg { color: #f34b58; width: 14px; height: 14px; }
+.not-found-actions .not-found-secondary:hover { color: white; }
+.not-found-actions a:focus-visible { outline: 2px solid #f34b58; outline-offset: 5px; }
+.not-found-bottomline { padding-top: 17px; border-top: 1px solid #dce2ec22; color: #768293; font-size: .48rem; }
+@keyframes nf-signal-pass { 0% { stroke-dashoffset: 26; opacity: 0; } 8% { opacity: 1; } 72% { opacity: 1; } 90%, 100% { stroke-dashoffset: -420; opacity: 0; } }
+@media (max-width: 850px) {
+  .not-found-content { grid-template-columns: minmax(0, 1fr); max-width: 520px; gap: 22px; padding-block: 35px 45px; }
+  .not-found-map { width: min(100%, 440px); margin: 0 auto; }
+  .not-found-message { max-width: 100%; padding: 0 20px; }
+  .not-found h1 { font-size: 4rem; margin-bottom: 20px; }
+  .not-found-kicker { margin-bottom: 18px; }
+  .not-found-copy { max-width: 380px; }
+  .not-found-actions { margin-top: 25px; }
+}
+@media (max-width: 480px) {
+  .not-found { padding: 23px 20px 19px; }
+  .not-found-topline { font-size: .43rem; letter-spacing: .12em; gap: 12px; }
+  .not-found-topline > span:last-child { gap: 6px; }
+  .not-found-content { padding-block: 29px 39px; gap: 29px; }
+  .not-found-map { width: calc(100% + 14px); margin-inline: -7px; }
+  .not-found-coordinate { font-size: .45rem; margin-top: 3px; }
+  .not-found-message { padding-inline: 4px; }
+  .not-found h1 { font-size: 3.8rem; }
+  .not-found-kicker { font-size: .49rem; }
+  .not-found-lead { font-size: 1.15rem; }
+  .not-found-copy { font-size: .8rem; line-height: 1.8; }
+  .not-found-actions { gap: 10px 22px; }
+  .not-found-actions a { font-size: .69rem; gap: 13px; }
+  .not-found-actions .not-found-home { padding-inline: 16px; gap: 24px; }
+  .not-found-bottomline { font-size: .4rem; letter-spacing: .1em; gap: 10px; }
+  .not-found-bottomline > span:last-child { gap: 6px; }
+}
+@media (max-height: 540px) and (min-width: 680px) {
+  .not-found { padding-block: 19px 16px; }
+  .not-found-content { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); max-width: 1060px; padding-block: 24px 30px; gap: 30px; }
+  .not-found-message { padding: 0; }
+  .not-found-kicker { margin-bottom: 12px; }
+  .not-found h1 { font-size: 3.6rem; margin-bottom: 16px; }
+  .not-found-lead { font-size: 1.05rem; margin-bottom: 8px; }
+  .not-found-copy { font-size: .77rem; }
+  .not-found-actions { margin-top: 18px; gap: 4px 18px; }
+  .not-found-coordinate { font-size: .43rem; }
+}
+@media (prefers-reduced-motion: reduce) { .not-found .nf-signal { animation: none; opacity: 0; } .not-found-actions a { transition: none; } }

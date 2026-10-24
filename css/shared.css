@@ -1,0 +1,8 @@
+/* Shared NOX environment. Chapter animations stay in home-cinematic.css. */
+body { margin: 0; font-family: "Space Grotesk", sans-serif; }
+.world { position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(circle at 70% 40%, rgba(240,68,86,.18), transparent 45%), #0b0e15; }
+.world-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  object-position: center; filter: brightness(.55); z-index: 0; }
+.world::before, .world::after { z-index: 1; }
+main, body > footer { position: relative; z-index: 1; }

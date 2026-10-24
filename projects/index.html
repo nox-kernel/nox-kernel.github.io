@@ -1,0 +1,54 @@
+---
+layout: base
+title: Projects — NOX Kernel
+nav_key: workbench-projects
+body_class: projects-page
+styles: [/css/projects.css]
+modules: [/js/projects.js]
+metadata: |
+  <meta name="description" content="Explore NOX projects in an interactive network of repositories, connected through the NOX bot core.">
+  <link rel="canonical" href="https://nox-kernel.github.io/projects/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Projects — NOX Kernel">
+  <meta property="og:description" content="Explore the NOX project network.">
+  <meta property="og:url" content="https://nox-kernel.github.io/projects/">
+---
+<main class="projects-viewer" id="project-viewer">
+  <div class="scene-canvas" id="project-scene" aria-label="Interactive 3D project network"></div>
+  <div class="scene-labels" id="project-labels"></div>
+  <div class="orb-label" id="nox-bot-label" aria-hidden="true" hidden><strong>NOX BOT</strong><span><i></i> SYSTEM CORE</span></div>
+
+  <button class="index-toggle" id="project-index-toggle" type="button" aria-controls="project-controls" aria-expanded="false">
+    <svg class="index-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16M4 12h10M4 19h16"/></svg>
+    <svg class="close-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+    <span>Project index</span>
+  </button>
+
+  <aside class="project-controls" id="project-controls" aria-label="Project search and filters" hidden>
+    <div class="index-heading"><span>NOX / WORKBENCH</span><h2>Project index<span>.</span></h2></div>
+    <div class="index-fields">
+      <label class="index-search"><span class="sr-only">Search projects</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg><input id="project-search" type="search" placeholder="Find a project" autocomplete="off" disabled></label>
+      <label class="index-select"><span>Status</span><select id="project-status" disabled><option value="">All statuses</option></select></label>
+      <label class="index-select"><span>Topic</span><select id="project-topic" disabled><option value="">All topics</option></select></label>
+      <div class="index-results"><span id="project-results">Connecting…</span><button id="project-clear" type="button" hidden>Clear filters</button></div>
+    </div>
+    <ul class="index-projects" id="project-list" aria-label="Projects"></ul>
+    <p class="index-sync-message" id="project-sync-message" role="status" hidden></p>
+    <div class="index-footer"><a href="{{ '/journal/' | relative_url }}">Open the journal <span aria-hidden="true">↗</span></a><button id="project-refresh" type="button">Refresh projects</button></div>
+  </aside>
+
+  <header class="viewer-heading"><div><span>NOX / EXPLORER</span><h1>Projects</h1></div><span class="viewer-count" id="project-count">CONNECTING</span></header>
+  <div class="viewer-state" id="viewer-state" role="status"><span class="viewer-spinner" aria-hidden="true"></span><p>Connecting to the project network…</p></div>
+  <p class="viewer-announcement sr-only" id="viewer-announcement" role="status" aria-live="polite"></p>
+
+  <div class="viewer-bottom">
+    <div class="viewer-hints"><span class="viewer-coordinate" aria-hidden="true">NOX / PROJECT SPACE</span><p class="desktop-hint">Drag to orbit <b>·</b> Right-drag to pan <b>·</b> Scroll to zoom</p><p class="touch-hint">Drag to orbit <b>·</b> Pinch to zoom <b>·</b> Tap a folder</p></div>
+    <div class="viewer-tools" role="group" aria-label="3D view controls">
+      <button id="viewer-motion" type="button" aria-label="Pause signal animation" aria-pressed="false" title="Pause signal animation"><svg viewBox="0 0 20 20" aria-hidden="true" fill="none"><path class="pause-mark" d="M7 5v10M13 5v10"/><path class="play-mark" d="m7 5 8 5-8 5Z"/></svg></button>
+      <button id="viewer-zoom-out" type="button" aria-label="Zoom out" title="Zoom out">−</button>
+      <button id="viewer-zoom-in" type="button" aria-label="Zoom in" title="Zoom in">+</button>
+      <button id="viewer-reset" class="viewer-reset" type="button" aria-label="Reset view" title="Reset view"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 8a6 6 0 1 1 0 5M4 3v5h5"/></svg></button>
+    </div>
+  </div>
+  <noscript><p class="viewer-noscript">Enable JavaScript to explore the projects. You can also visit <a href="https://github.com/nox-kernel">NOX on GitHub</a>.</p></noscript>
+</main>

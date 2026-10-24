@@ -1,0 +1,20 @@
+title: NOX Kernel
+url: https://nox-kernel.github.io
+baseurl: ""
+destination: _site
+markdown: kramdown
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - scripts
+  - experiments
+  - Videos
+  - css/navigation.backup.css
+  - vendor/bundle
+  - node_modules
+  - package.json
+  - package-lock.json
+  - .bundle
+  - .jekyll-cache
+  - .sass-cache

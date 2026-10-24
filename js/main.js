@@ -65,97 +65,7 @@ const pendingDiscord = grid.querySelector(
 if (pendingDiscord) {
   pendingDiscord.remove();
 }
-    document.getElementById('year').textContent = new Date().getFullYear();
-// Opening scene, followed by the transition into Focus.
-customElements.whenDefined('nox-mascot').then(() => {
-  const nox = document.getElementById('homepage-mascot');
-  const main = document.getElementById('top');
-  const focus = document.getElementById('focus');
-
-  if (!nox || !main || !focus) return;
-
-  const motion = window.matchMedia(
-    '(prefers-reduced-motion: reduce)'
-  );
-
-  const clamp = value => Math.max(0, Math.min(1, value));
-
-  let frame = 0;
-  let request = 0;
-
-  async function updateScene() {
-    frame = 0;
-    const currentRequest = ++request;
-
-    const y = window.scrollY;
-    const height = window.innerHeight;
-
-    const start = main.getBoundingClientRect().top + y;
-    const focusStart = focus.getBoundingClientRect().top + y;
-
-    // Finish the opening as Focus reaches the upper screen area.
-    const introEnd = Math.max(
-      start + 1,
-      focusStart - height * 0.25
-    );
-
-    const progress = clamp(
-      (y - start) / (introEnd - start)
-    );
-
-    const reduced = nox.state.reducedMotion;
-    const opening = reduced ? 1 : progress;
-
-    main.style.setProperty('--intro-progress', opening);
-
-    if (!nox.hasAttribute('data-loaded')) return;
-
-    // Raise the head during the opening, then look around.
-    const clip = opening < 1 ? 'PowerUp' : 'Scan';
-
-    if (nox.state.clip !== clip) {
-      const selected = await nox.playAnimation(clip);
-
-      if (!selected) return;
-    }
-
-    // A newer scroll update takes priority.
-    if (currentRequest !== request) return;
-
-    const end = start + main.offsetHeight - height;
-
-    const scan = clamp(
-      (y - introEnd) / Math.max(1, end - introEnd)
-    );
-
-    nox.setScrollProgress(
-      clip === 'PowerUp' ? opening : scan
-    );
-
-    const compactView =
-  window.innerWidth <= 820 || window.innerHeight <= 700;
-
-    const distance = compactView ? 105 : 90;
-
-    nox.setCameraView(26, distance);
-  }
-
-  function requestUpdate() {
-    if (!frame) {
-      frame = requestAnimationFrame(updateScene);
-    }
-  }
-
-  window.addEventListener('scroll', requestUpdate, {
-    passive: true
-  });
-
-  window.addEventListener('resize', requestUpdate);
-  motion.addEventListener('change', requestUpdate);
-  nox.addEventListener('nox-ready', requestUpdate);
-
-  requestUpdate();
-});
+    document.getElementById('year')?.replaceChildren(String(new Date().getFullYear()));
 // Measure the banner so NOX and section headings stay below it.
 const siteHeader = document.querySelector('.top');
 
@@ -176,3 +86,29 @@ if (siteHeader) {
   headerObserver.observe(siteHeader);
   updateHeaderHeight();
 }
+(() => {
+  const menu = document.querySelector(".top .nox-menu");
+  const tray = menu?.querySelector("nav");
+  if (!tray) return;
+
+  let startX = 0, startY = 0;
+
+  tray.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+
+  tray.addEventListener("touchend", e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    const dy = e.changedTouches[0].clientY - startY;
+    if (dx > 60 && Math.abs(dx) > Math.abs(dy)) {
+      menu.open = false;
+    }
+  }, { passive: true });
+
+  document.addEventListener("click", e => {
+    if (menu.open && (!menu.contains(e.target) || e.target === menu)) {
+      menu.open = false;
+    }
+  });
+})();

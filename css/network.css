@@ -1,0 +1,167 @@
+/* Network source styles: shared by NoxiVerse, Collaborate and the old /network/ address. */
+.network-page { --net-line: rgba(204, 215, 235, .23); --net-dim: #b1b8c6; --net-red: #f34b58; }
+.network-main { max-width: 1504px; margin-inline: auto; padding: 26px 32px 0; }
+.network-main section { padding-block: 0; border-bottom: 0; }
+.network-main h1, .network-main h2, .network-main h3 { font-family: "Oxanium", sans-serif; }
+.network-main h1 { font-weight: 600; letter-spacing: -.055em; }
+.network-main h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 500; line-height: 1.15; letter-spacing: -.045em; margin: 12px 0 0; }
+.network-main h3 { font-size: 1.35rem; line-height: 1.2; letter-spacing: -.025em; font-weight: 500; margin: 20px 0 14px; }
+.network-main p { margin-top: 0; }
+.network-main .net-kicker { font-family: "Oxanium", sans-serif; font-size: .66rem; letter-spacing: .16em; text-transform: uppercase; line-height: 1.7; color: #e8eaf0; margin-bottom: 0; }
+.net-kicker > span, .net-card-foot > span, .nv-art-caption > span { color: var(--net-red); padding-inline: 7px; }
+.network-main .net-lead { color: #d0d5df; font-size: 1rem; line-height: 1.8; max-width: 510px; margin-bottom: 24px; }
+.network-main .net-small { color: var(--net-dim); font-size: .72rem; line-height: 1.6; margin: 12px 0 0; }
+.net-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
+.net-button { display: inline-flex; align-items: center; justify-content: center; gap: 16px; min-height: 48px; padding: 12px 20px; border: 1px solid var(--net-line); background: #0d111ac9; font-size: .82rem; font-weight: 600; transition: background .2s, border-color .2s; }
+.net-button:hover, .net-button:focus-visible { border-color: #e7edf8; background: #1a202d; }
+.net-button-primary { background: #f0f2f7; color: #10131b; border-color: #f0f2f7; }
+.net-button-primary:hover, .net-button-primary:focus-visible { color: #10131b; background: #fff; border-color: #fff; }
+.network-page .icon-link::after { background-color: var(--net-red); }
+.net-text-link { display: inline-flex; align-items: center; gap: 18px; min-height: 44px; font-size: .83rem; font-weight: 500; }
+.net-text-link > span { color: var(--net-red); font-size: 1.2rem; }
+.net-text-link:hover { color: var(--net-red); }
+.network-main .net-status { display: inline-flex; align-items: center; gap: 9px; border: 1px solid #ffffff45; background: #080d16a6; padding: 5px 10px; color: #e6eaf1; font-family: "Oxanium", sans-serif; font-size: .63rem; letter-spacing: .12em; text-transform: uppercase; margin: 25px 0 0; }
+.net-status::before { content: ""; width: 5px; height: 5px; background: var(--net-red); box-shadow: 0 0 10px #f34b5877; }
+.net-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* Keep the artwork visible, with real HTML text over the quieter left side. */
+.nv-hero { position: relative; display: flex; align-items: center; min-height: 680px; border: 1px solid var(--net-line); isolation: isolate; background: #111723; }
+.nv-landscape, .nv-hero-shade { position: absolute; inset: 0; width: 100%; height: 100%; }
+.nv-landscape { object-fit: cover; object-position: center; z-index: -2; }
+.nv-hero-shade { z-index: -1; background: linear-gradient(90deg, #080e19f2 0%, #080e19c7 32%, #080e1959 59%, #080e1914 100%), linear-gradient(0deg, #080d17cc 0%, transparent 35%); }
+.nv-hero-content { padding: 56px clamp(28px, 5vw, 76px) 78px; max-width: 720px; }
+.nv-hero-content h1 { font-size: clamp(3.1rem, 5.6vw, 5.5rem); line-height: 1.05; margin: 20px 0 18px; white-space: nowrap; }
+.nv-hero-content h1 > span { color: #f77b82; }
+.network-main .nv-tagline { font-family: "Oxanium", sans-serif; font-size: clamp(1.7rem, 2.7vw, 2.6rem); font-weight: 500; line-height: 1.15; letter-spacing: -.035em; margin-bottom: 20px; }
+.nv-art-caption { position: absolute; right: 24px; bottom: 14px; margin: 0; color: #d6dce6; font-family: "Oxanium", sans-serif; font-size: .58rem; text-transform: uppercase; letter-spacing: .12em; }
+
+/* Shared sharp-edged editorial sections. */
+.network-main .net-section { padding: 70px 0; }
+.net-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 30px; }
+.net-section-heading > p { color: var(--net-dim); font-size: .92rem; max-width: 370px; margin-bottom: 3px; line-height: 1.8; }
+.net-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.net-card { display: flex; flex-direction: column; min-width: 0; padding: 26px; border: 1px solid var(--net-line); background: #0b1019e8; }
+.net-card-featured { border-top-color: var(--net-red); background: linear-gradient(145deg, #35172099, #0b1019ed 52%); }
+.net-card-top { display: flex; align-items: center; justify-content: space-between; gap: 15px; font-family: "Oxanium", sans-serif; }
+.net-number { color: var(--net-red); font-size: .73rem; }
+.net-card-label { color: var(--net-dim); font-size: .58rem; text-transform: uppercase; letter-spacing: .1em; text-align: right; }
+.net-line-icon { width: 56px; height: 56px; margin: 32px 0 4px; color: #e8ebf1; }
+.net-card p { color: var(--net-dim); font-size: .86rem; line-height: 1.8; margin-bottom: 28px; }
+.net-card-foot { display: block; margin-top: auto; padding-top: 18px; border-top: 1px solid var(--net-line); font-family: "Oxanium", sans-serif; font-size: .54rem; letter-spacing: .04em; text-transform: uppercase; color: #cbd1dd; }
+.net-card-link { align-self: start; margin-top: auto; min-height: 44px; font-size: .78rem; }
+.network-main .net-community { display: grid; grid-template-columns: 80px minmax(0, 1fr) auto; align-items: center; gap: 32px; border-block: 1px solid var(--net-line); background: #0b1019db; padding: 36px; }
+.net-community-mark { display: grid; place-items: center; width: 80px; height: 80px; border: 1px solid var(--net-line); }
+.net-community-mark img { max-width: 48px; height: auto; }
+.net-community-copy h2 { font-size: clamp(1.55rem, 2.3vw, 2rem); }
+.net-community-copy p:last-child { color: var(--net-dim); font-size: .85rem; max-width: 590px; margin: 14px 0 0; line-height: 1.8; }
+.net-community-action { text-align: center; }
+.net-endnote { display: flex; align-items: start; justify-content: space-between; flex-wrap: wrap; gap: 18px 40px; padding: 28px 0; color: var(--net-dim); font-size: .68rem; line-height: 1.7; }
+.net-endnote p { max-width: 540px; font-size: .56rem; letter-spacing: .04em; margin-bottom: 0; }
+
+/* Collaborate uses an original HTML/CSS video poster rather than another image download. */
+.collab-hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: center; gap: clamp(32px, 5vw, 76px); min-height: 650px; padding: 42px 0 60px !important; border-bottom: 1px solid var(--net-line) !important; }
+.collab-hero h1 { font-size: clamp(2.7rem, 4.3vw, 4.4rem); margin: 28px 0 24px; line-height: 1.1; }
+.collab-hero h1 > span, .net-directory h1 > span { color: #b1b8c6; }
+.collab-hero .net-actions { gap: 12px; }
+.net-channel-link { margin-top: 22px; min-height: 44px; gap: 12px; font-size: .78rem; }
+.net-channel-link img { width: 25px; height: auto; object-fit: contain; }
+.collab-art { min-width: 0; margin: 0; }
+.collab-frame { border: 1px solid #8b95a85c; background: #0d111a; box-shadow: 0 20px 80px #0006; }
+.collab-frame-bar, .collab-frame-foot { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 15px 18px; font-family: "Oxanium", sans-serif; font-size: .56rem; letter-spacing: .08em; color: #b3bece; }
+.collab-frame-bar { border-bottom: 1px solid var(--net-line); }
+.collab-frame-bar > span:last-child { color: var(--net-red); }
+.collab-poster { position: relative; display: flex; min-height: 350px; flex-direction: column; justify-content: end; overflow: hidden; padding: 32px; background: radial-gradient(ellipse at 80% 10%, #a022383b, transparent 65%), repeating-linear-gradient(0deg, transparent 0 39px, #ffffff05 39px 40px), repeating-linear-gradient(90deg, transparent 0 39px, #ffffff05 39px 40px), #0c1018; }
+.collab-eyes { position: absolute; top: 35px; right: 25px; width: 62%; height: auto; max-height: 150px; object-fit: contain; opacity: .65; filter: drop-shadow(0 0 22px #e82b4566); }
+.collab-poster-type { position: relative; font-family: "Oxanium", sans-serif; font-size: clamp(2.5rem, 4.2vw, 4.4rem); line-height: 1.02; letter-spacing: -.06em; font-weight: 600; padding-top: 90px; }
+.collab-poster-type em { color: #f46a76; font-style: normal; }
+.collab-poster-label { margin-top: 24px; font-family: "Oxanium", sans-serif; font-size: .57rem; letter-spacing: .24em; color: #c7cfdb; }
+.collab-poster-label b { font-weight: 400; color: var(--net-red); padding-inline: 7px; }
+.collab-cross { position: absolute; color: #9aa6bd; font-family: monospace; font-size: 15px; }
+.collab-cross-one { top: 16px; left: 16px; }
+.collab-cross-two { bottom: 12px; right: 18px; }
+.collab-timeline { position: relative; display: flex; gap: 5px; padding: 14px 18px; border-block: 1px solid var(--net-line); }
+.collab-timeline > span { height: 19px; width: 25%; background: #f34b582b; border: 1px solid #f34b585c; }
+.collab-timeline > span:nth-child(2) { width: 45%; background: #ffffff13; border-color: #ffffff3b; }
+.collab-timeline > span:nth-child(3) { width: 30%; }
+.collab-timeline > i { position: absolute; top: 6px; bottom: 6px; left: 42%; width: 1px; background: #f3f4f8; }
+.collab-frame-foot { font-size: .47rem; }
+.collab-frame-foot img { width: 23px; height: auto; }
+.collab-art figcaption { margin-top: 12px; color: #a4adbd; font-size: .65rem; text-align: right; }
+.network-main .collab-brief { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 38px 0 42px; border-block: 1px solid var(--net-line); }
+.collab-brief h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); }
+.collab-brief-detail > p { color: var(--net-dim); font-size: .9rem; line-height: 1.8; margin-bottom: 16px; }
+.collab-brief-detail > .net-small { display: block; margin-top: 0; }
+
+/* Keep old bookmarks useful; Network itself is now a submenu heading. */
+.net-directory { max-width: 1180px; padding-top: 70px; padding-bottom: 70px; }
+.net-directory h1 { font-size: clamp(3rem, 6vw, 5rem); }
+.net-directory-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 40px; }
+.net-directory-card { position: relative; display: flex; align-items: end; min-height: 330px; border: 1px solid var(--net-line); overflow: hidden; isolation: isolate; }
+.net-directory-card:hover { border-color: var(--net-red); }
+.net-directory-card > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.net-directory-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, #0b1019 0%, #0b101966 100%); }
+.net-directory-card > div { padding: 30px; }
+.net-directory-card h2 { margin-bottom: 10px; }
+.net-directory-card p { font-size: .9rem; color: #c0c8d5; }
+.net-directory-card .icon-link { font-size: .8rem; margin-top: 12px; }
+.net-directory-collab { background: url('../images/nox-header-eyes.png') center 24px / 85% auto no-repeat, #0c1019; }
+
+@media (max-width: 1100px) {
+  .network-main { padding-inline: 24px; }
+  .net-card { padding: 22px; }
+  .net-card-foot { font-size: .5rem; letter-spacing: 0; }
+  .net-card-foot > span { padding-inline: 4px; }
+  .network-main .net-community { grid-template-columns: 60px minmax(0, 1fr); gap: 24px; padding: 28px; }
+  .net-community-mark { width: 60px; height: 60px; }
+  .net-community-mark img { max-width: 36px; }
+  .net-community-action { grid-column: 2; text-align: left; }
+  .collab-hero { gap: 28px; }
+  .collab-hero .net-button { padding-inline: 15px; font-size: .75rem; gap: 10px; }
+}
+@media (max-width: 760px) {
+  .network-main { padding: 16px 18px 0; }
+  .nv-hero { min-height: 750px; align-items: end; }
+  .nv-landscape { height: 420px; object-position: 78% top; }
+  .nv-hero-shade { background: linear-gradient(0deg, #080e19 0%, #080e19 45%, #080e19b3 68%, #080e190d 100%); }
+  .nv-hero-content { padding: 235px 24px 64px; width: 100%; }
+  .nv-hero-content h1 { font-size: clamp(2.9rem, 10vw, 4.6rem); margin: 16px 0; }
+  .nv-hero-content .net-status { margin-top: 16px; }
+  .network-main .nv-tagline { font-size: 1.85rem; }
+  .network-main .net-lead { font-size: .9rem; line-height: 1.75; }
+  .nv-art-caption { left: 24px; right: 16px; bottom: 16px; font-size: .49rem; }
+  .nv-hero .net-actions { gap: 6px 18px; }
+  .network-main .net-section { padding-block: 48px; }
+  .net-section-heading { display: block; margin-bottom: 24px; }
+  .net-section-heading > p { max-width: 510px; margin: 20px 0 0; }
+  .net-card-grid { grid-template-columns: 1fr; gap: 14px; }
+  .net-card { padding: 26px; }
+  .net-card h3 { margin-top: 24px; }
+  .net-line-icon { margin-top: 24px; }
+  .net-card-foot { font-size: .56rem; letter-spacing: .04em; }
+  .network-main .net-community { grid-template-columns: 1fr; padding: 26px; gap: 24px; }
+  .net-community-action { grid-column: 1; }
+  .net-endnote { padding-block: 24px; }
+  .collab-hero { grid-template-columns: 1fr; gap: 40px; min-height: auto; padding: 30px 0 42px !important; }
+  .collab-hero h1 { font-size: clamp(2.4rem, 8.9vw, 4rem); }
+  .collab-hero .net-button { font-size: .78rem; }
+  .collab-art { width: 100%; max-width: 540px; justify-self: center; }
+  .collab-poster { min-height: 320px; }
+  .collab-poster-type { font-size: clamp(3rem, 11vw, 4rem); }
+  .network-main .collab-brief { grid-template-columns: 1fr; gap: 24px; padding-block: 32px; }
+  .net-directory { padding-top: 48px; padding-bottom: 48px; }
+  .net-directory-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 360px) {
+  .network-main { padding-inline: 12px; }
+  .nv-hero-content { padding-inline: 18px; }
+  .nv-hero-content h1 { font-size: 2.7rem; }
+  .network-main .net-kicker { font-size: .59rem; }
+  .net-button { padding-inline: 16px; }
+  .net-card { padding: 22px; }
+  .net-card-foot { font-size: .5rem; }
+  .collab-poster { padding-inline: 22px; }
+  .collab-frame-bar { padding-inline: 12px; font-size: .5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .net-button { transition: none; }
+}

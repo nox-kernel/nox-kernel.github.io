@@ -1,0 +1,29 @@
+- label: Home
+  url: /
+  key: home
+
+- label: Workbench
+  key: workbench
+  children:
+    - label: Projects
+      url: /projects/
+      key: workbench-projects
+
+    - label: Journal
+      url: /journal/
+      key: workbench-journal
+
+- label: Network
+  key: network
+  children:
+    - label: NoxiVerse
+      url: /noxiverse/
+      key: network-noxiverse
+
+    - label: Collaborate
+      url: /collaborate/
+      key: network-collaborate
+
+- label: About
+  url: /about/
+  key: about

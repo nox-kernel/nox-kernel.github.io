@@ -1,27 +1,10 @@
 /* The journal shares the homepage palette; its layout leaves room to read. */
 .journal-site {
   --max: 1240px;
-  --header-height: 85px;
   --journal-muted: #b0b5c0;
 }
 
-.journal-site .top {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  background: rgba(11, 14, 21, .95);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-}
 
-.journal-site nav a[aria-current="page"] { color: var(--text); }
-.journal-site nav a[aria-current="page"]::after {
-  content: "";
-  display: block;
-  height: 2px;
-  background: var(--red);
-  transform: translateY(9px);
-}
 
 .wb-skip {
   position: fixed;
@@ -318,10 +301,6 @@
 }
 
 @media (max-width: 560px) {
-  .journal-site { --header-height: 120px; }
-  .journal-site .top { gap: 10px; }
-  .journal-site .top nav { flex-wrap: nowrap; gap: 22px; }
-  .journal-site nav a[aria-current="page"]::after { transform: translateY(5px); }
   .wb-intro { padding-top: 38px; }
   .wb-intro h1 { font-size: clamp(2.55rem, 11vw, 3.8rem); margin-block: 20px; }
   .wb-deck { font-size: .96rem; }

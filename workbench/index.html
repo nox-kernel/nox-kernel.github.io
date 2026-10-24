@@ -1,81 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0b0e15" />
-  <title>The Workbench — NOX Kernel</title>
-  <meta name="description" content="NOX's project journal. Notes on building this website, an assistant prototype, and the things I am learning along the way." />
-  <meta property="og:title" content="The Workbench — NOX Kernel" />
-  <meta property="og:description" content="What I am building, what gets in the way, and what helps me understand it." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nox-kernel.github.io/workbench/" />
-  <meta property="og:image" content="https://nox-kernel.github.io/images/workbench/website-preview.jpg" />
-  <link rel="canonical" href="https://nox-kernel.github.io/workbench/" />
-  <link rel="icon" href="../images/nox-kernel.jpg" type="image/jpeg" />
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/workbench.css" />
-  <script src="../js/workbench.js" defer></script>
-  <script type="module" src="../js/journal-content.js"></script>
-</head>
-<body class="journal-site" data-journal-page="index">
-  <a class="wb-skip" href="#journal-main">Skip to the journal</a>
-  <header class="wrap top">
-    <a class="identity" href="../" aria-label="NOX Kernel home">
-      <img src="../images/nox-kernel.jpg" alt="" width="36" height="36" />
-      <div>NOX <span>KERNEL</span></div>
-    </a>
-    <nav aria-label="Primary navigation">
-      <a href="../">Home</a>
-      <a href="./" aria-current="page">Workbench</a>
-      <a href="../#network">Network</a>
-    </nav>
-  </header>
-
-  <main id="journal-main" class="wrap">
-    <div class="wb-intro">
-      <div>
-        <span class="wb-kicker">NOX / The open notebook</span>
-        <h1>Notes from<br /><em>the workbench.</em></h1>
-        <p class="wb-deck">A journal of the things I am building, the bits that do not work first time, and the small discoveries that help them make sense.</p>
-      </div>
-      <aside class="wb-intro-side" aria-label="About this journal">
-        <div class="wb-author">
-          <img src="../images/nox-kernel.jpg" alt="" width="42" height="42" />
-          <div><strong>Written from the bench</strong><span>By NOX · learning as I go</span></div>
-        </div>
-        <p class="wb-margin-note">Some things are ready to try. Others are still questions. I want to leave a useful trail either way.</p>
-      </aside>
-    </div>
-
-    <section id="projects" class="wb-projects" aria-labelledby="projects-title">
-      <div class="wb-section-bar">
-        <h2 id="projects-title">On the bench</h2>
-        <span class="wb-label" data-journal-project-count>Published projects</span>
-      </div>
-
-      <div data-journal-projects>
-        <p class="wb-content-message" role="status">Opening the published projects…</p>
-        <noscript><p>Enable JavaScript to read the published projects and entries.</p></noscript>
-      </div>
-    </section>
-
-    <section id="entries" class="wb-journal" aria-labelledby="entries-title">
-      <div class="wb-section-bar">
-        <h2 id="entries-title">Pages from the journal</h2>
-        <span class="wb-label">Started <time datetime="2026-10-23">23 October 2026</time></span>
-      </div>
-      <p class="wb-journal-intro">These opening entries look back at work already underway. From here, I will keep a record of what changes and what I learn.</p>
-      <div class="wb-filter" data-journal-filters role="group" aria-label="Filter journal entries by project" hidden></div>
-      <p class="wb-filter-status" data-journal-status role="status" aria-live="polite" hidden></p>
-      <ol id="journal-entries" class="wb-entries"></ol>
-    </section>
-
-    <div class="wb-closing">
-      <div><span class="wb-kicker">A note in the margin</span><h2>The learning is part of the work.</h2></div>
-      <div><p>I use documentation, other people's explanations, and AI tools to help me move forward. This journal is where I try to make sense of that help, describe what I have tested, and notice what I still need to learn.</p><a class="wb-link" href="../#network">Find me around the web <span aria-hidden="true">↗</span></a></div>
-    </div>
-  </main>
-  <footer class="wrap"><strong>NOX KERNEL</strong><span>Building to understand · One entry at a time.</span><span>© <span data-current-year>2026</span> NOX</span><a class="wb-editor-link" href="https://nox-kernel-workbench.sanity.studio/" target="_blank" rel="noopener noreferrer">Editor</a></footer>
-</body>
-</html>
+---
+layout: base
+title: Workbench — NOX Kernel
+nav_key: workbench
+metadata: |
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://nox-kernel.github.io/projects/">
+scripts: [/js/workbench-redirect.js]
+---
+<main class="wrap" style="padding-block:80px">
+  <h1>The work, in two places.</h1>
+  <p>Explore the repositories in <a href="{{ '/projects/' | relative_url }}">Projects</a>, or read the notes in the <a href="{{ '/journal/' | relative_url }}">Journal</a>.</p>
+  <p role="status">Opening Projects…</p>
+</main>

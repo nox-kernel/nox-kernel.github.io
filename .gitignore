@@ -1,0 +1,14 @@
+_site/
+.bundle/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+vendor/bundle/
+
+Gemfile.lock
+
+# Workstation-only tooling and credentials must stay out of this public repo.
+.agents/
+.aws/
+.codex/
+.auth/
