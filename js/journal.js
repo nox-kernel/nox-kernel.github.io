@@ -24,6 +24,7 @@ let filtersOpen = false;
 let returnSlug = null;
 let inboxScroll = 0;
 let rememberTimer;
+let projectAliases = new Map([['website', '__general']]);
 const viewStateKey = 'noxJournalView';
 
 function element(tag, className, text) {
@@ -294,17 +295,22 @@ function selectEntry(slug, userInitiated = false, snapshot = null) {
   }
 }
 
+function projectFilterValue(value) {
+  const mapped = projectAliases.get(value) || value;
+  return [...projectFilter.options].some(option => option.value === mapped) ? mapped : '';
+}
+
 function readLocation({ restoreFocus = false } = {}) {
   const snapshot = history.state?.[viewStateKey];
   const params = new URL(location.href).searchParams;
   if (snapshot) {
     search.value = typeof snapshot.search === 'string' ? snapshot.search : '';
-    projectFilter.value = snapshot.project || '';
+    projectFilter.value = projectFilterValue(snapshot.project || '');
     typeFilter.value = snapshot.type || '';
     returnSlug = snapshot.returnSlug || null;
   } else {
     search.value = '';
-    projectFilter.value = params.get('project') || '';
+    projectFilter.value = projectFilterValue(params.get('project') || '');
     typeFilter.value = '';
   }
   const requested = params.get('entry');
@@ -327,15 +333,14 @@ function filterEntries() {
 }
 
 function populateFilters(projects) {
-  const slugs = new Set(entries.map(entry => entry.project?.slug));
   const knownProjects = new Map();
   [...projects, ...entries.map(entry => entry.project)].forEach(project => {
-    if (project?.slug && slugs.has(project.slug)) knownProjects.set(project.slug, project.title || project.slug);
+    if (project?.slug) knownProjects.set(project.slug, project.title || project.slug);
   });
-  if (entries.some(entry => !entry.project?.slug)) knownProjects.set('__general', 'General');
+  knownProjects.set('__general', 'General');
   projectFilter.replaceChildren(new Option('All projects', ''), ...[...knownProjects].sort((a, b) => a[1].localeCompare(b[1])).map(([slug, title]) => new Option(title, slug)));
   const requestedProject = new URL(location.href).searchParams.get('project');
-  if (knownProjects.has(requestedProject)) projectFilter.value = requestedProject;
+  projectFilter.value = projectFilterValue(requestedProject || '');
   const types = new Set(entries.map(typeOf));
   typeFilter.replaceChildren(new Option('All entries', ''), ...Object.entries(ENTRY_TYPES).filter(([key]) => types.has(key)).map(([key, title]) => new Option(title, key)));
   for (const input of [search, projectFilter, typeFilter]) input.disabled = false;
@@ -352,6 +357,10 @@ async function load() {
     const result = await loadWorkbench();
     if (sequence !== loadSequence) return;
     entries = Array.isArray(result.entries) ? result.entries.filter(entry => typeof entry.slug === 'string' && entry.slug) : [];
+    projectAliases = result.projectAliases;
+    const projectStatus = document.getElementById('journal-project-notice');
+    projectStatus.textContent = result.projectNotice;
+    projectStatus.hidden = !result.projectNotice;
     entries.sort((a, b) => (Date.parse(b.publishedAt) || 0) - (Date.parse(a.publishedAt) || 0) || (b.entryNumber || 0) - (a.entryNumber || 0));
     populateFilters(Array.isArray(result.projects) ? result.projects : []);
     ready = true;

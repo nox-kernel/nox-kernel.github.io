@@ -1,5 +1,7 @@
 import { SANITY } from './sanity-config.js';
 import { safeUrl, validSlug, renderPortableText } from './journal-content.js';
+import { loadGitHubProjects } from './github-projects.js';
+import { reconcileJournalProjects } from './journal-projects.js';
 
 export { safeUrl, renderPortableText };
 export const STUDIO_URL = SANITY.studioUrl;
@@ -27,16 +29,12 @@ export function projectRepoUrl(project) {
 
 const image = 'alt,caption,asset->{url,metadata{dimensions}}';
 const query = `{
-  "projects": *[_type == "project" && defined(slug.current) && !(_id in path("drafts.**"))]
-    | order(order asc, title asc){
-      _id,title,"slug":slug.current,summary,status,category,sourceUrl,demoUrl,order
-    },
   "entries": *[_type == "journalEntry" && defined(slug.current) && defined(publishedAt)
     && publishedAt <= now() && !(_id in path("drafts.**"))]
     | order(publishedAt desc, entryNumber desc){
       _id,title,"slug":slug.current,summary,publishedAt,entryNumber,retrospective,
-      "entryType":coalesce(entryType,"note"),
-      "project":project->{_id,title,"slug":slug.current},
+      "entryType":coalesce(entryType,"note"),githubRepo,
+      "project":project->{_id,title,"slug":slug.current,sourceUrl},
       "cover":coverImage{${image}},
       body[]{...,_type == "journalImage" => {...,asset->{url,metadata{dimensions}}}}
     }
@@ -55,16 +53,19 @@ export function loadWorkbench({ force = false } = {}) {
     endpoint.searchParams.set('query', query);
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 15000);
+    const githubRequest = loadGitHubProjects({ force }).catch(() => null);
     try {
       const response = await fetch(endpoint, { credentials: 'omit', signal: controller.signal });
       if (!response.ok) throw new Error('The published content could not be reached.');
       const { result } = await response.json();
-      if (!Array.isArray(result?.projects) || !Array.isArray(result?.entries)) {
+      if (!Array.isArray(result?.entries)) {
         throw new Error('The content response was incomplete.');
       }
+      const github = await githubRequest;
       return {
-        projects: result.projects.filter(project => validSlug(project.slug)),
-        entries: result.entries.filter(entry => validSlug(entry.slug))
+        ...reconcileJournalProjects(result.entries.filter(entry => validSlug(entry.slug)), github?.projects || [], Boolean(github)),
+        projectNotice: !github ? 'GitHub is temporarily unavailable. Repository names are shown until the project list can refresh.' :
+          github.stale ? 'Using the saved GitHub project list. Refresh later for the latest projects.' : ''
       };
     } finally {
       clearTimeout(timer);

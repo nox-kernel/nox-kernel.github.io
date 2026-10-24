@@ -81,7 +81,9 @@ The [public GitHub API](https://docs.github.com/en/rest/repos/repos#list-reposit
 
 Open [NOX Content Editor](https://nox-kernel-workbench.sanity.studio/) and sign in with an authorized Sanity account. Add a journal title, address, date, entry type, summary and body, then publish when ready. Types are Note, Update, Learning, Fix and Release; older entries without a type display Note.
 
-Journal project associations are optional and use existing Sanity Project records. These records support journal organization and historical links; they no longer populate the Projects viewer. GitHub discovery does not create or edit Sanity documents.
+Choose an optional **Project** directly from the public GitHub repository picker, or choose **General**. Its list follows the same exclusions as the Projects viewer; adding a repo does not require a Sanity Project record. Journal filters and project labels use the current GitHub names. Existing legacy references resolve to matching repos; website-history notes are General, and old `?project=website` links still open those General notes. Entry text and addresses remain intact.
+
+The old Sanity Project schema remains only for earlier references. GitHub discovery does not create Sanity project documents. If GitHub cannot be reached, the Journal still opens and shows a project-list notice; the existing saved list is used when available.
 
 Drafts stay in the editor. Published writing is shared content, so it can appear on the live site after a refresh without a website rebuild. Website JavaScript contains only public configuration and anonymous reads; keep API tokens, passwords and private editor configuration out of the repository.
 
