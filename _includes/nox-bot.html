@@ -1,0 +1,22 @@
+<picture class="nox-bot {{ include.class }}"aria-hidden="true"data-nox-alert="{{ '/images/nox-bot/alert.webp' | relative_url }}">
+  <source
+    media="(prefers-reduced-motion: reduce)"
+    srcset="{{ '/images/nox-bot/still.png' | relative_url }}"
+  >
+
+  {% if include.animation %}
+    <source
+      type="image/webp"
+      srcset="{{ include.animation | relative_url }}"
+    >
+  {% endif %}
+
+  <img
+    src="{{ '/images/nox-bot/still.png' | relative_url }}"
+    alt=""
+    width="1200"
+    height="1200"
+    loading="lazy"
+    decoding="async"
+  >
+</picture>

@@ -206,6 +206,41 @@
 
 /* SOCIAL FOOTER */
 
+.top .nox-menu nav .drawer-footer {
+  margin-top: auto;
+  padding-top: 12px;
+  width: 100%;
+}
+
+.top .nox-menu nav .drawer-bot {
+  position: relative;
+  height: 86px;
+  width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.top .nox-menu nav .drawer-bot__runner {
+  position: absolute;
+  left: -14px;
+  bottom: -10px;
+  width: 85px;
+  height: 85px;
+}
+
+.top .nox-menu nav .drawer-bot[data-state="closed"] .drawer-bot__runner {
+  visibility: hidden;
+}
+
+.top .nox-menu nav .drawer-bot__runner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform-origin: 50% 70%;
+  pointer-events: auto;
+}
+
 .top .nox-menu nav .drawer-socials {
   margin-top: auto;
   padding-top: 18px;
@@ -216,6 +251,11 @@
   align-items: center;
   justify-content: space-between;
   gap: 6px;
+}
+
+.top .nox-menu nav .drawer-footer .drawer-socials {
+  margin-top: 0;
+  flex-wrap: nowrap;
 }
 
 .top .nox-menu nav .drawer-socials a {
@@ -233,6 +273,11 @@
   background: transparent;
 
   transition: background .2s, transform .2s;
+}
+
+.top .nox-menu nav .drawer-footer .drawer-socials a {
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 .top .nox-menu nav .drawer-socials img {
