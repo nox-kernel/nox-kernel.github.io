@@ -6,3 +6,25 @@ body { margin: 0; font-family: "Space Grotesk", sans-serif; }
   object-position: center; filter: brightness(.55); z-index: 0; }
 .world::before, .world::after { z-index: 1; }
 main, body > footer { position: relative; z-index: 1; }
+/* Reusable NOX Bot placements */
+.nox-bot {
+  display: block;
+  width: min(100%, 320px);
+  aspect-ratio: 1;
+  margin: 2rem auto;
+}
+
+.nox-bot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.nox-bot--small {
+  width: min(100%, 140px);
+}
+
+.nox-bot--large {
+  width: min(100%, 440px);
+}
